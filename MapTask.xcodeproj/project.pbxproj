@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -15,6 +15,11 @@
 		288770032639571D00A721B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288770012639571D00A721B8 /* LaunchScreen.storyboard */; };
 		2887700E2639571D00A721B8 /* MapTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887700D2639571D00A721B8 /* MapTaskTests.swift */; };
 		288770192639571D00A721B8 /* MapTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288770182639571D00A721B8 /* MapTaskUITests.swift */; };
+		2887702A26396FF000A721B8 /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887702926396FF000A721B8 /* BaseTarget.swift */; };
+		2887702D26397C6500A721B8 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887702C26397C6500A721B8 /* UsersService.swift */; };
+		28B8EBC326397F7A0042D33E /* UsersTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8EBC226397F7A0042D33E /* UsersTarget.swift */; };
+		28B8EBC62639841C0042D33E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8EBC52639841C0042D33E /* User.swift */; };
+		28B8EBC826398BEB0042D33E /* Moya+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8EBC726398BEB0042D33E /* Moya+Extra.swift */; };
 		63623E0D322A827DE0714B90 /* Pods_MapTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC99F622775FCDBB83CFC567 /* Pods_MapTask.framework */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +55,11 @@
 		288770142639571D00A721B8 /* MapTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		288770182639571D00A721B8 /* MapTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTaskUITests.swift; sourceTree = "<group>"; };
 		2887701A2639571D00A721B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2887702926396FF000A721B8 /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
+		2887702C26397C6500A721B8 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
+		28B8EBC226397F7A0042D33E /* UsersTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTarget.swift; sourceTree = "<group>"; };
+		28B8EBC52639841C0042D33E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		28B8EBC726398BEB0042D33E /* Moya+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Extra.swift"; sourceTree = "<group>"; };
 		7951916F16442BDBD3A143C1 /* Pods-MapTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTask.debug.xcconfig"; path = "Target Support Files/Pods-MapTask/Pods-MapTask.debug.xcconfig"; sourceTree = "<group>"; };
 		9A2FF8CF057BDEC6866C954B /* Pods-MapTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTask.release.xcconfig"; path = "Target Support Files/Pods-MapTask/Pods-MapTask.release.xcconfig"; sourceTree = "<group>"; };
 		FC99F622775FCDBB83CFC567 /* Pods_MapTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -114,6 +124,9 @@
 		28876FF52639571900A721B8 /* MapTask */ = {
 			isa = PBXGroup;
 			children = (
+				28B8EBC4263984040042D33E /* Models */,
+				2887702B26397C5600A721B8 /* Services */,
+				2887702626396F7000A721B8 /* Network */,
 				28876FF62639571900A721B8 /* AppDelegate.swift */,
 				28876FF82639571900A721B8 /* SceneDelegate.swift */,
 				28876FFA2639571900A721B8 /* ViewController.swift */,
@@ -143,13 +156,38 @@
 			path = MapTaskUITests;
 			sourceTree = "<group>";
 		};
+		2887702626396F7000A721B8 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				2887702926396FF000A721B8 /* BaseTarget.swift */,
+				28B8EBC226397F7A0042D33E /* UsersTarget.swift */,
+				28B8EBC726398BEB0042D33E /* Moya+Extra.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		2887702B26397C5600A721B8 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				2887702C26397C6500A721B8 /* UsersService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		28B8EBC4263984040042D33E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				28B8EBC52639841C0042D33E /* User.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		39E8AE1E9C9AD7958186DD08 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
 				7951916F16442BDBD3A143C1 /* Pods-MapTask.debug.xcconfig */,
 				9A2FF8CF057BDEC6866C954B /* Pods-MapTask.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -327,9 +365,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28B8EBC826398BEB0042D33E /* Moya+Extra.swift in Sources */,
+				2887702A26396FF000A721B8 /* BaseTarget.swift in Sources */,
 				28876FFB2639571900A721B8 /* ViewController.swift in Sources */,
 				28876FF72639571900A721B8 /* AppDelegate.swift in Sources */,
+				2887702D26397C6500A721B8 /* UsersService.swift in Sources */,
 				28876FF92639571900A721B8 /* SceneDelegate.swift in Sources */,
+				28B8EBC62639841C0042D33E /* User.swift in Sources */,
+				28B8EBC326397F7A0042D33E /* UsersTarget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
