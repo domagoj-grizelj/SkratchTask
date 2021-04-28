@@ -15,6 +15,7 @@
 		288770032639571D00A721B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 288770012639571D00A721B8 /* LaunchScreen.storyboard */; };
 		2887700E2639571D00A721B8 /* MapTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887700D2639571D00A721B8 /* MapTaskTests.swift */; };
 		288770192639571D00A721B8 /* MapTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288770182639571D00A721B8 /* MapTaskUITests.swift */; };
+		63623E0D322A827DE0714B90 /* Pods_MapTask.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC99F622775FCDBB83CFC567 /* Pods_MapTask.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,9 @@
 		288770142639571D00A721B8 /* MapTaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MapTaskUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		288770182639571D00A721B8 /* MapTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTaskUITests.swift; sourceTree = "<group>"; };
 		2887701A2639571D00A721B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7951916F16442BDBD3A143C1 /* Pods-MapTask.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTask.debug.xcconfig"; path = "Target Support Files/Pods-MapTask/Pods-MapTask.debug.xcconfig"; sourceTree = "<group>"; };
+		9A2FF8CF057BDEC6866C954B /* Pods-MapTask.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapTask.release.xcconfig"; path = "Target Support Files/Pods-MapTask/Pods-MapTask.release.xcconfig"; sourceTree = "<group>"; };
+		FC99F622775FCDBB83CFC567 /* Pods_MapTask.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapTask.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				63623E0D322A827DE0714B90 /* Pods_MapTask.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +81,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1206CFDD6F0C87E680B7A574 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FC99F622775FCDBB83CFC567 /* Pods_MapTask.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		28876FEA2639571900A721B8 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +96,8 @@
 				2887700C2639571D00A721B8 /* MapTaskTests */,
 				288770172639571D00A721B8 /* MapTaskUITests */,
 				28876FF42639571900A721B8 /* Products */,
+				39E8AE1E9C9AD7958186DD08 /* Pods */,
+				1206CFDD6F0C87E680B7A574 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +143,16 @@
 			path = MapTaskUITests;
 			sourceTree = "<group>";
 		};
+		39E8AE1E9C9AD7958186DD08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7951916F16442BDBD3A143C1 /* Pods-MapTask.debug.xcconfig */,
+				9A2FF8CF057BDEC6866C954B /* Pods-MapTask.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +160,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2887701D2639571D00A721B8 /* Build configuration list for PBXNativeTarget "MapTask" */;
 			buildPhases = (
+				30B717C0AD756C0A57CAA9AB /* [CP] Check Pods Manifest.lock */,
 				28876FEF2639571900A721B8 /* Sources */,
 				28876FF02639571900A721B8 /* Frameworks */,
 				28876FF12639571900A721B8 /* Resources */,
+				DCC364B82B8178A670A80059 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +280,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		30B717C0AD756C0A57CAA9AB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MapTask-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DCC364B82B8178A670A80059 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MapTask/Pods-MapTask-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MapTask/Pods-MapTask-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MapTask/Pods-MapTask-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		28876FEF2639571900A721B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -366,7 +435,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -421,7 +490,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -433,6 +502,7 @@
 		};
 		2887701E2639571D00A721B8 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7951916F16442BDBD3A143C1 /* Pods-MapTask.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -452,6 +522,7 @@
 		};
 		2887701F2639571D00A721B8 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A2FF8CF057BDEC6866C954B /* Pods-MapTask.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
