@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		287725292639B9AE00761C74 /* UserResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287725282639B9AE00761C74 /* UserResponse.swift */; };
 		28876FF72639571900A721B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF62639571900A721B8 /* AppDelegate.swift */; };
 		28876FF92639571900A721B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF82639571900A721B8 /* SceneDelegate.swift */; };
 		28876FFB2639571900A721B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FFA2639571900A721B8 /* ViewController.swift */; };
@@ -41,6 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		287725282639B9AE00761C74 /* UserResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserResponse.swift; sourceTree = "<group>"; };
 		28876FF32639571900A721B8 /* MapTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28876FF62639571900A721B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28876FF82639571900A721B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -97,6 +99,23 @@
 				FC99F622775FCDBB83CFC567 /* Pods_MapTask.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		287725262639B98F00761C74 /* Targets */ = {
+			isa = PBXGroup;
+			children = (
+				2887702926396FF000A721B8 /* BaseTarget.swift */,
+				28B8EBC226397F7A0042D33E /* UsersTarget.swift */,
+			);
+			path = Targets;
+			sourceTree = "<group>";
+		};
+		287725272639B99600761C74 /* Responses */ = {
+			isa = PBXGroup;
+			children = (
+				287725282639B9AE00761C74 /* UserResponse.swift */,
+			);
+			path = Responses;
 			sourceTree = "<group>";
 		};
 		28876FEA2639571900A721B8 = {
@@ -159,9 +178,9 @@
 		2887702626396F7000A721B8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				2887702926396FF000A721B8 /* BaseTarget.swift */,
-				28B8EBC226397F7A0042D33E /* UsersTarget.swift */,
 				28B8EBC726398BEB0042D33E /* Moya+Extra.swift */,
+				287725272639B99600761C74 /* Responses */,
+				287725262639B98F00761C74 /* Targets */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -373,6 +392,7 @@
 				28876FF92639571900A721B8 /* SceneDelegate.swift in Sources */,
 				28B8EBC62639841C0042D33E /* User.swift in Sources */,
 				28B8EBC326397F7A0042D33E /* UsersTarget.swift in Sources */,
+				287725292639B9AE00761C74 /* UserResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

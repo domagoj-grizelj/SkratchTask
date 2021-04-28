@@ -19,10 +19,11 @@ class ViewController: UIViewController {
         mapView.setCenter(CLLocationCoordinate2D(latitude: 59.31, longitude: 18.06), zoomLevel: 9, animated: false)
         view.addSubview(mapView)
 
-        UsersService().fetchUsers(numberOfUsers: 19) { UsersService in
-            print("Succ")
-        } failure: { Error in
-            print("ERRORIO")
+        UsersService().fetchUsers(numberOfUsers: 1) { result in
+            switch result {
+            case .failure(let error): print(error)
+            case .success(let users): print(users)
+            }
         }
 
     }

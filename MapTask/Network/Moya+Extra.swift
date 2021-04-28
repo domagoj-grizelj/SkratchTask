@@ -10,6 +10,8 @@ import Moya
 
 // MARK: - Plugin extension
 
+typealias RemoteResponse<C> = (Result<C, MoyaError>) -> Void
+
 extension MoyaProvider {
 
     public convenience init() {
@@ -21,8 +23,26 @@ extension MoyaProvider {
                   trackInflights: false)
     }
 
+    @discardableResult func httpRequest<C: Codable>(_ target: Target, completion: RemoteResponse<C>?) -> Cancellable {
+        return self.request(target) { (result) in
+            switch result {
+            case .success(let response):
+                do {
+                    let object = try response.map(C.self)
+                    completion!(.success(object))
+                } catch {
+                    completion!(.failure(MoyaError.jsonMapping(response)))
+                }
+
+            case .failure(let error):
+                completion!(.failure(error))
+            }
+        }
+    }
+
     public static func networkLoggerPlugin() -> NetworkLoggerPlugin {
-        return NetworkLoggerPlugin()
+        let configuration = NetworkLoggerPlugin.Configuration(logOptions: .verbose)
+        return NetworkLoggerPlugin(configuration: configuration)
     }
 
 }

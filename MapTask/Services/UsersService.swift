@@ -16,13 +16,8 @@ class UsersService {
       self.provider = provider
     }
 
-    func fetchUsers(numberOfUsers: Int, success: @escaping (([User]) -> Void), failure: @escaping (MoyaError) -> Void) {
-        provider.request(.getUsers(numberOfUsers: numberOfUsers)) { result in
-            switch result {
-            case .success(let response): print("ASDF")
-            case .failure(let error): print("ASDASDASD")
-            }
-        }
+    func fetchUsers(numberOfUsers: Int, completion: @escaping ((Result<UserResponse, MoyaError>) -> Void)) {
+        provider.httpRequest(.getUsers(numberOfUsers: numberOfUsers), completion: completion)
     }
 
 }
