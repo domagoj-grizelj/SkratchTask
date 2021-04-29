@@ -9,15 +9,15 @@ import Foundation
 
 struct User: Codable {
 
-    let gender: String?
-    let name: UserNameData?
-    let location: UserLocationData?
-    let email: String?
-    let login: UserLoginData?
-    let registered: UserRegistrationData?
-    let dob: UserRegistrationData?
-    let phone: String?
-    let picture: UserPictureData?
+    let gender: String
+    let name: UserNameData
+    let location: UserLocationData
+    let email: String
+    let login: UserLoginData
+    let registered: UserRegistrationData
+    let dob: UserRegistrationData
+    let phone: String
+    let picture: UserPictureData
 
     struct UserNameData: Codable {
 

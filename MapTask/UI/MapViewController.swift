@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  MapViewController.swift
 //  MapTask
 //
 //  Created by Domagoj Grizelj on 28.04.2021..
@@ -8,7 +8,7 @@
 import UIKit
 import Mapbox
 
-class ViewController: UIViewController {
+class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
