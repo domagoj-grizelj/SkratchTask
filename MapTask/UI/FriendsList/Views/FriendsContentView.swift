@@ -9,7 +9,11 @@ import UIKit
 
 class FriendsContentView: UIView {
 
+    // MARK: - Properties
+
     let tableView = UITableView()
+
+    // MARK: - Lifecycle
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +23,7 @@ class FriendsContentView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
 }
 
 // MARK: - Setup Views

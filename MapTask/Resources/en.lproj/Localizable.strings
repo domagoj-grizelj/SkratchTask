@@ -1,0 +1,11 @@
+/* 
+  Localizable.strings
+  MapTask
+
+  Created by Domagoj Grizelj on 29.04.2021..
+  
+*/
+
+// MARK: - Friends scene
+
+"locale.friendsList.navigation.title" = "My Friends";

@@ -27,21 +27,21 @@ class FriendsViewController: UIViewController {
     }
 
     func setupContentView() {
-        contentView.tableView.dataSource = self
         contentView.tableView.delegate = self
-        contentView.tableView.reloadData()
+        contentView.tableView.dataSource = self
     }
 
     func setupNavigation() {
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        extendedLayoutIncludesOpaqueBars = true;
         setSolidNavigationStyle(withBackgroundColor: .white, tintColor: .black, shadowColor: .white)
+        navigationItem.title = FriendsLocale.kNavigationTitle.localized
     }
 
 }
 
-extension FriendsViewController: UITableViewDelegate {
-
-}
+// MARK: - UITableViewDataSource
 
 extension FriendsViewController: UITableViewDataSource {
 
@@ -51,11 +51,15 @@ extension FriendsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as? FriendsTableViewCell else {
-          return FriendsTableViewCell()
+            return FriendsTableViewCell()
         }
 
         return cell
     }
+}
 
+// MARK: - UITableViewDelegate
+
+extension FriendsViewController: UITableViewDelegate {
 
 }
