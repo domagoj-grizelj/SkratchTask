@@ -10,7 +10,7 @@ import UIKit
 
 class PageViewController: UIPageViewController {
 
-    private let switchView = SwitchView()
+    private let contentView = PageContentView()
 
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [MapViewController(), FriendsTableViewController()]
@@ -29,17 +29,16 @@ class PageViewController: UIPageViewController {
     }
 
     private func setupView() {
-        view.addSubview(switchView)
+        view.addSubview(contentView)
         dataSource = self
-        switchView.snp.makeConstraints {
-            $0.left.equalTo(24)
-            $0.bottom.equalTo(view.snp.bottom).offset(view.safeAreaInsets.bottom - 24)
-            $0.width.equalTo(138)
-            $0.height.equalTo(48)
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 
 }
+
+// MARK: - UIPageViewControllerDataSource
 
 extension PageViewController: UIPageViewControllerDataSource {
 

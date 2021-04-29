@@ -37,9 +37,13 @@ private extension PageContentView {
 
     private func setupSwitchView() {
         addSubview(switchView)
+        switchView.layer.shadowColor = UIColor.black.cgColor
+        switchView.layer.shadowOpacity = 0.15
+        switchView.layer.shadowRadius = 8
+        switchView.layer.shadowOffset = CGSize(width: 0, height: 2)
         switchView.snp.makeConstraints {
             $0.left.equalTo(24)
-            $0.bottom.equalTo(snp.bottom).offset(safeAreaInsets.bottom)
+            $0.bottom.equalTo(-24)
             $0.width.equalTo(138)
             $0.height.equalTo(48)
         }

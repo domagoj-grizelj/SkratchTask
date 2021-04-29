@@ -13,6 +13,7 @@ class SwitchView: UIView {
 
     // MARK: - Properties
 
+    private let backgroundSelectionView = UIView()
     private let stackView = UIStackView()
     private let mapImageView = UIImageView()
     private let friendsImageView = UIImageView()
@@ -31,27 +32,63 @@ class SwitchView: UIView {
 }
 
 // MARK: - View Setup
+
 private extension SwitchView {
 
-    private func setupViews() {
+    func setupViews() {
         backgroundColor = .white
         layer.cornerRadius = 24
+        setupBackgroundSelectionView()
         setupStackView()
+        setupMapImageView()
+        setupFriendsImageView()
     }
 
-    private func setupStackView() {
-        addSubview(stackView)
-        stackView.addSubview(mapImageView)
-        stackView.addSubview(friendsImageView)
-        stackView.snp.makeConstraints {
-            $0.width.equalTo(138)
-            $0.height.equalTo(48)
-            $0.center.equalTo(self.snp.center)
+    func setupBackgroundSelectionView() {
+        addSubview(backgroundSelectionView)
+        backgroundSelectionView.backgroundColor = .paleBlue
+        backgroundSelectionView.layer.cornerRadius = 17
+        backgroundSelectionView.snp.makeConstraints {
+            $0.width.equalTo(62)
+            $0.height.equalTo(34)
+            $0.left.equalTo(7)
+            $0.centerY.equalToSuperview()
         }
     }
 
-    private func setupMapImageView() {
-        mapImageView.backgroundColor = .green
+    func setupStackView() {
+        addSubview(stackView)
+        stackView.distribution = .fillEqually
+        stackView.snp.makeConstraints {
+            $0.left.equalTo(7)
+            $0.right.equalTo(-7)
+            $0.height.equalTo(48)
+            $0.center.equalToSuperview()
+        }
+    }
+
+    func setupMapImageView() {
+        stackView.addArrangedSubview(mapImageView)
+        mapImageView.contentMode = .center
+        mapImageView.image = Assets.kSwitchMapIcon.image
+        mapImageView.image = mapImageView.image?.withRenderingMode(.alwaysTemplate)
+        mapImageView.tintColor = .purple
+        mapImageView.snp.makeConstraints {
+            $0.width.equalTo(62)
+            $0.height.equalTo(34)
+        }
+    }
+
+    func setupFriendsImageView() {
+        stackView.addArrangedSubview(friendsImageView)
+        friendsImageView.contentMode = .center
+        friendsImageView.image = Assets.kSwitchListIcon.image
+        friendsImageView.image = friendsImageView.image?.withRenderingMode(.alwaysTemplate)
+        friendsImageView.tintColor = .purple
+        friendsImageView.snp.makeConstraints {
+            $0.width.equalTo(62)
+            $0.height.equalTo(34)
+        }
     }
 
 }
