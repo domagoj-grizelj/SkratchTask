@@ -13,22 +13,31 @@ class PageViewController: UIPageViewController {
     // MARK: - Properties
 
     private let contentView = PageContentView()
-    private(set) lazy var orderedViewControllers: [UIViewController] = {
-        return [MapViewController(), FriendsTableViewController()]
+    private(set) lazy var contentViewControllers: [UIViewController] = {
+        let mapViewController = MapViewController()
+        let friendsViewController = UINavigationController(rootViewController: FriendsViewController())
+        return [mapViewController, friendsViewController]
     }()
+
+    // MARK: - Dependencies
+
+    private let usersService: UsersService
 
     // MARK: - Lifecycle
 
+    init(usersService: UsersService = UsersService()) {
+        self.usersService = usersService
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        if let firstViewController = orderedViewControllers.first {
-            setViewControllers([firstViewController],
-                               direction: .forward,
-                               animated: true,
-                               completion: nil)
-        }
         setupView()
+        getData()
     }
 
 }
@@ -42,7 +51,7 @@ private extension PageViewController {
     }
 
     func setupContentView() {
-        dataSource = self
+        setViewControllers([contentViewControllers[0]], direction: .forward, animated: true, completion: nil)
         view.addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
@@ -53,60 +62,29 @@ private extension PageViewController {
 
 }
 
+// MARK: - Data
+
+private extension PageViewController {
+
+    func getData() {
+    }
+
+}
+
 // MARK: - Actions
 
 private extension PageViewController {
 
     @objc func didTapMapButton() {
         contentView.set(selectedSwitchButton: .map)
+        setViewControllers([contentViewControllers[0]], direction: .reverse, animated: true, completion: nil)
+        view.bringSubviewToFront(contentView)
     }
 
     @objc func didTapListButton() {
         contentView.set(selectedSwitchButton: .list)
+        self.setViewControllers([self.contentViewControllers[1]], direction: .forward, animated: true, completion: nil)
+//        view.bringSubviewToFront(contentView)
     }
-
-}
-
-// MARK: - UIPageViewControllerDataSource
-
-extension PageViewController: UIPageViewControllerDataSource {
-
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
-            return nil
-        }
-
-        let previousIndex = viewControllerIndex - 1
-
-        guard previousIndex >= 0 else {
-            return nil
-        }
-
-        guard orderedViewControllers.count > previousIndex else {
-            return nil
-        }
-
-        return orderedViewControllers[previousIndex]
-    }
-
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else {
-            return nil
-        }
-
-        let nextIndex = viewControllerIndex + 1
-        let orderedViewControllersCount = orderedViewControllers.count
-
-        guard orderedViewControllersCount != nextIndex else {
-            return nil
-        }
-
-        guard orderedViewControllersCount > nextIndex else {
-            return nil
-        }
-
-        return orderedViewControllers[nextIndex]
-    }
-
 
 }
