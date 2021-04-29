@@ -10,11 +10,14 @@ import UIKit
 
 class PageViewController: UIPageViewController {
 
-    private let contentView = PageContentView()
+    // MARK: - Properties
 
+    private let contentView = PageContentView()
     private(set) lazy var orderedViewControllers: [UIViewController] = {
         return [MapViewController(), FriendsTableViewController()]
     }()
+
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,12 +31,38 @@ class PageViewController: UIPageViewController {
         setupView()
     }
 
+}
+
+// MARK: - View Setup
+
+private extension PageViewController {
+
     private func setupView() {
-        view.addSubview(contentView)
+        setupContentView()
+    }
+
+    func setupContentView() {
         dataSource = self
+        view.addSubview(contentView)
         contentView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+        contentView.switchView.mapButton.addTarget(self, action: #selector(didTapMapButton), for: .touchUpInside)
+        contentView.switchView.listButton.addTarget(self, action: #selector(didTapListButton), for: .touchUpInside)
+    }
+
+}
+
+// MARK: - Actions
+
+private extension PageViewController {
+
+    @objc func didTapMapButton() {
+        contentView.set(selectedSwitchButton: .map)
+    }
+
+    @objc func didTapListButton() {
+        contentView.set(selectedSwitchButton: .list)
     }
 
 }

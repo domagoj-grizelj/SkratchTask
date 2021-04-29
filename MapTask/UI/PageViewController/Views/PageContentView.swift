@@ -12,7 +12,7 @@ class PageContentView: UIView {
 
     // MARK: - Properties
 
-    private let switchView = SwitchView()
+    let switchView = SwitchView()
 
     // MARK: - Lifecycle
 
@@ -23,6 +23,16 @@ class PageContentView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
       fatalError("init(coder:) has not been implemented")
+    }
+
+}
+
+// MARK: - Public Methods
+
+extension PageContentView {
+
+    func set(selectedSwitchButton: SwitchView.SelectedButton) {
+        switchView.set(selectedButton: selectedSwitchButton)
     }
 
 }
