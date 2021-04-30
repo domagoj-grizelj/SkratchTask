@@ -7,10 +7,16 @@
 
 import UIKit
 
+protocol FriendsDisplayLogic: AnyObject {
+
+}
+
 class FriendsViewController: UIViewController {
 
     // MARK: - Properties
 
+    var interactor: FriendsBusinessLogic?
+    var router: FriendsRoutingLogic?
     private lazy var contentView = FriendsContentView()
     var users: [User]? = [] {
         didSet {
@@ -19,6 +25,24 @@ class FriendsViewController: UIViewController {
     }
 
     // MARK: - Lifecycle
+
+    init(delegate: FriendsRouterDelegate?) {
+        super.init(nibName: nil, bundle: nil)
+        let interactor = FriendsInteractor()
+        let presenter = FriendsPresenter()
+        let router = FriendsRouter()
+        interactor.presenter = presenter
+        presenter.viewController = self
+        router.viewController = self
+        router.delegate = delegate
+//        homePostsDataSource.delegate = self
+        self.interactor = interactor
+        self.router = router
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func loadView() {
         view = contentView
@@ -47,6 +71,13 @@ class FriendsViewController: UIViewController {
         setSolidNavigationStyle(withBackgroundColor: .white, tintColor: .black, shadowColor: .white)
         navigationItem.title = FriendsLocale.kNavigationTitle.localized
     }
+
+}
+
+// MARK: - FriendsDisplayLogic
+
+extension FriendsViewController: FriendsDisplayLogic {
+
 
 }
 

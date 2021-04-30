@@ -8,28 +8,41 @@
 import Foundation
 import UIKit
 
+protocol PageDisplayLogic: AnyObject {
+
+}
+
 class PageViewController: UIPageViewController {
 
     // MARK: - Properties
+    var interactor: PageBusinessLogic?
+    var router: PageRoutingLogic?
+    private lazy var contentView = PageContentView()
 
-    private let contentView = PageContentView()
     private let friendCountInputView = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
     private let dummyTextField = UITextField()
-    private var mapViewController = MapViewController()
-    private var friendsNavigationViewController = UINavigationController(rootViewController: FriendsViewController())
+    private var mapViewController: MapViewController
+    private var friendsNavigationViewController: UINavigationController
     private var friendsViewController: FriendsViewController? {
         return friendsNavigationViewController.children.first as? FriendsViewController
     }
 
-    // MARK: - Dependencies
-
-    private let usersService: UsersService
-
     // MARK: - Lifecycle
 
-    init(usersService: UsersService = UsersService()) {
-        self.usersService = usersService
+    init(delegate: PageRouterDelegate?) {
+        let interactor = PageInteractor()
+        let presenter = PagePresenter()
+        let router = PageRouter()
+        mapViewController = MapViewController(delegate: router)
+        friendsNavigationViewController = UINavigationController(rootViewController: FriendsViewController(delegate: router))
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
+        
+        interactor.presenter = presenter
+        presenter.viewController = self
+        router.viewController = self
+        router.delegate = delegate
+        self.interactor = interactor
+        self.router = router
     }
 
     required init?(coder: NSCoder) {
@@ -87,19 +100,25 @@ private extension PageViewController {
 
 }
 
+// MARK: - Display Logic
+
+extension PageViewController: PageDisplayLogic {
+
+}
+
 // MARK: - Data
 
 private extension PageViewController {
 
     func getData() {
-        usersService.fetchUsers(numberOfUsers: contentView.friendsCountView.numberOfUsers) { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print("greska")
-                print(error) // TODO: Some error handling shoud be here
-            case .success(let usersResponse): self?.friendsViewController?.users = usersResponse.results
-            }
-        }
+//        usersService.fetchUsers(numberOfUsers: contentView.friendsCountView.numberOfUsers) { [weak self] result in
+//            switch result {
+//            case .failure(let error):
+//                print("greska")
+//                print(error) // TODO: Some error handling shoud be here
+//            case .success(let usersResponse): self?.friendsViewController?.users = usersResponse.results
+//            }
+//        }
     }
 
 }
