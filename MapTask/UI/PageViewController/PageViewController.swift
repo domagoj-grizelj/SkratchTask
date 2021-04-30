@@ -13,11 +13,10 @@ class PageViewController: UIPageViewController {
     // MARK: - Properties
 
     private let contentView = PageContentView()
-    private let customInput = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
-    private let textField = UITextField()
+    private let friendCountInputView = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
+    private let dummyTextField = UITextField()
     private var mapViewController = MapViewController()
     private var friendsNavigationViewController = UINavigationController(rootViewController: FriendsViewController())
-
     private var friendsViewController: FriendsViewController? {
         return friendsNavigationViewController.children.first as? FriendsViewController
     }
@@ -45,7 +44,7 @@ class PageViewController: UIPageViewController {
     }
 
     override var inputAccessoryView: UIView? {
-        return customInput
+        return friendCountInputView
     }
 
     override var canBecomeFirstResponder: Bool {
@@ -122,17 +121,20 @@ private extension PageViewController {
     }
 
     @objc func didTapCountButton() {
+        let stringNumber = friendCountInputView.textField.text ?? "5"
+        let count = Int(stringNumber) ?? 5
+
         switch contentView.friendsCountView.state {
         case .count:
-            contentView.set(state: .confirmation, count: 5)
-            customInput.textField.becomeFirstResponder()
-            customInput.isHidden = false
+            contentView.set(state: .confirmation, count: count)
+            friendCountInputView.textField.becomeFirstResponder()
+            friendCountInputView.isHidden = false
 
         case .confirmation:
-            contentView.set(state: .count, count: 5)
+            contentView.set(state: .count, count: count)
             getData()
-            customInput.textField.resignFirstResponder()
-            customInput.isHidden = true
+            friendCountInputView.textField.resignFirstResponder()
+            friendCountInputView.isHidden = true
         }
     }
 
