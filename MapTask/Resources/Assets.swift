@@ -11,6 +11,7 @@ enum Assets: String {
 
     case kSwitchMapIcon = "map"
     case kSwitchListIcon = "list"
+    case kFriendCountCheckmark = "tickSmall"
 
     var image: UIImage? {
         return UIImage(named: self.rawValue) ?? nil

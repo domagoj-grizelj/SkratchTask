@@ -13,6 +13,7 @@ class PageContentView: UIView {
     // MARK: - Properties
 
     let switchView = SwitchView()
+    let friendsCountView = FriendsCountView()
 
     // MARK: - Lifecycle
 
@@ -26,7 +27,7 @@ class PageContentView: UIView {
     }
 
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        return switchView.frame.contains(point)
+        return switchView.frame.contains(point) || friendsCountView.frame.contains(point)
     }
 
 }
@@ -39,6 +40,10 @@ extension PageContentView {
         switchView.set(selectedButton: selectedSwitchButton)
     }
 
+    func set(state: FriendsCountView.FriendsCountViewState, count: Int) {
+        friendsCountView.set(state: state, count: count)
+    }
+
 }
 
 // MARK: - Private Methods
@@ -47,13 +52,14 @@ private extension PageContentView {
 
     func setupViews() {
         setupSwitchView()
+        setupFriendsCountView()
     }
 
     private func setupSwitchView() {
         addSubview(switchView)
         switchView.layer.shadowColor = UIColor.black.cgColor
         switchView.layer.shadowOpacity = 0.15
-        switchView.layer.shadowRadius = 8
+        switchView.layer.shadowRadius = 4
         switchView.layer.shadowOffset = CGSize(width: 0, height: 2)
         switchView.snp.makeConstraints {
             $0.left.equalTo(24)
@@ -63,5 +69,17 @@ private extension PageContentView {
         }
     }
 
+    private func setupFriendsCountView() {
+        addSubview(friendsCountView)
+        friendsCountView.layer.shadowColor = UIColor.black.cgColor
+        friendsCountView.layer.shadowOpacity = 0.15
+        friendsCountView.layer.shadowRadius = 4
+        friendsCountView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        friendsCountView.snp.makeConstraints {
+            $0.right.equalTo(-24)
+            $0.bottom.equalTo(-24)
+            $0.width.greaterThanOrEqualTo(48)
+        }
+    }
 
 }
