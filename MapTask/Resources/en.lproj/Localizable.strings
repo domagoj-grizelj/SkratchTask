@@ -9,3 +9,7 @@
 // MARK: - Friends scene
 
 "locale.friendsList.navigation.title" = "My Friends";
+
+// MARK: - Page scene
+
+"locale.page.input.placeholder" = "No. of users";

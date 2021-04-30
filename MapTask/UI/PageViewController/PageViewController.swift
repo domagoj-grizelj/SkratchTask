@@ -15,11 +15,12 @@ class PageViewController: UIPageViewController {
     private let contentView = PageContentView()
     private let customInput = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
     private let textField = UITextField()
-    private(set) lazy var contentViewControllers: [UIViewController] = {
-        let mapViewController = MapViewController()
-        let friendsViewController = UINavigationController(rootViewController: FriendsViewController())
-        return [mapViewController, friendsViewController]
-    }()
+    private var mapViewController = MapViewController()
+    private var friendsNavigationViewController = UINavigationController(rootViewController: FriendsViewController())
+
+    private var friendsViewController: FriendsViewController? {
+        return friendsNavigationViewController.children.first as? FriendsViewController
+    }
 
     // MARK: - Dependencies
 
@@ -39,8 +40,8 @@ class PageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        setupObservers()
         getData()
-        reloadInputViews()
     }
 
     override var inputAccessoryView: UIView? {
@@ -53,7 +54,7 @@ class PageViewController: UIPageViewController {
 
 }
 
-// MARK: - View Setup
+// MARK: - Setup
 
 private extension PageViewController {
 
@@ -62,26 +63,27 @@ private extension PageViewController {
     }
 
     func setupContentView() {
-        setViewControllers([contentViewControllers[0]], direction: .forward, animated: true, completion: nil)
+        setViewControllers([mapViewController], direction: .forward, animated: true, completion: nil)
+
         view.addSubview(contentView)
-        contentView.snp.makeConstraints {
-            $0.edges.equalToSuperview()
-        }
         contentView.switchView.mapButton.addTarget(self, action: #selector(didTapMapButton), for: .touchUpInside)
         contentView.switchView.listButton.addTarget(self, action: #selector(didTapListButton), for: .touchUpInside)
         contentView.friendsCountView.countButton.addTarget(self, action: #selector(didTapCountButton), for: .touchUpInside)
-//        contentView.addSubview(customInput)
-//        customInput.keyboardType = .numberPad
-//        customInput.snp.makeConstraints {
-//            $0.bottom.left.equalTo(-16)
-//            $0.right.equalTo(-16)
-//            $0.height.equalTo(30)
-//        }
-        customInput.backgroundColor = .red
-        customInput.snp.makeConstraints {
-            $0.height.width.equalTo(80)
+        contentView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
-        view.bringSubviewToFront(customInput)
+    }
+
+    func setupObservers() {
+        registerForKeyboardWillShowNotification { (notif, size) in
+            self.contentView.updateBottomConstraint(for: size.height)
+            self.contentView.animateAlongsideKeyboard(notif: notif)
+        }
+
+        registerForKeyboardWillHideNotification { (notif) in
+            self.contentView.updateBottomConstraint(for: 0)
+            self.contentView.animateAlongsideKeyboard(notif: notif)
+        }
     }
 
 }
@@ -91,6 +93,14 @@ private extension PageViewController {
 private extension PageViewController {
 
     func getData() {
+        usersService.fetchUsers(numberOfUsers: contentView.friendsCountView.numberOfUsers) { [weak self] result in
+            switch result {
+            case .failure(let error):
+                print("greska")
+                print(error) // TODO: Some error handling shoud be here
+            case .success(let usersResponse): self?.friendsViewController?.users = usersResponse.results
+            }
+        }
     }
 
 }
@@ -101,26 +111,29 @@ private extension PageViewController {
 
     @objc func didTapMapButton() {
         contentView.set(selectedSwitchButton: .map)
-        setViewControllers([contentViewControllers[0]], direction: .reverse, animated: true, completion: nil)
+        setViewControllers([mapViewController], direction: .reverse, animated: true, completion: nil)
         view.bringSubviewToFront(contentView)
     }
 
     @objc func didTapListButton() {
         contentView.set(selectedSwitchButton: .list)
-        setViewControllers([self.contentViewControllers[1]], direction: .forward, animated: true, completion: nil)
+        setViewControllers([friendsNavigationViewController], direction: .forward, animated: true, completion: nil)
         view.bringSubviewToFront(contentView)
     }
 
     @objc func didTapCountButton() {
-        contentView.set(state: .confirmation, count: 5)
-        customInput.textField.becomeFirstResponder()
-        customInput.isHidden = false
-        reloadInputViews()
+        switch contentView.friendsCountView.state {
+        case .count:
+            contentView.set(state: .confirmation, count: 5)
+            customInput.textField.becomeFirstResponder()
+            customInput.isHidden = false
+
+        case .confirmation:
+            contentView.set(state: .count, count: 5)
+            getData()
+            customInput.textField.resignFirstResponder()
+            customInput.isHidden = true
+        }
     }
-
-}
-
-extension PageViewController: UITextFieldDelegate {
-
 
 }

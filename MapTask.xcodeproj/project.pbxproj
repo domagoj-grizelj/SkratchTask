@@ -24,6 +24,10 @@
 		28772552263B232200761C74 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 28772554263B232200761C74 /* Localizable.strings */; };
 		28772556263B2D7800761C74 /* FriendsCountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772555263B2D7800761C74 /* FriendsCountView.swift */; };
 		28772558263B3D9300761C74 /* InputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772557263B3D9300761C74 /* InputAccessoryView.swift */; };
+		2877255A263BF05C00761C74 /* UIView+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772559263BF05C00761C74 /* UIView+Extra.swift */; };
+		2877255F263BF99900761C74 /* UIFont+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877255E263BF99900761C74 /* UIFont+Extra.swift */; };
+		28772564263BFE1E00761C74 /* circularstd-book.otf in Resources */ = {isa = PBXBuildFile; fileRef = 28772563263BFE1E00761C74 /* circularstd-book.otf */; };
+		28772567263C059E00761C74 /* PageLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772566263C059E00761C74 /* PageLocale.swift */; };
 		28876FF72639571900A721B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF62639571900A721B8 /* AppDelegate.swift */; };
 		28876FF92639571900A721B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF82639571900A721B8 /* SceneDelegate.swift */; };
 		288770002639571D00A721B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28876FFF2639571D00A721B8 /* Assets.xcassets */; };
@@ -73,6 +77,10 @@
 		28772553263B232200761C74 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		28772555263B2D7800761C74 /* FriendsCountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsCountView.swift; sourceTree = "<group>"; };
 		28772557263B3D9300761C74 /* InputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAccessoryView.swift; sourceTree = "<group>"; };
+		28772559263BF05C00761C74 /* UIView+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extra.swift"; sourceTree = "<group>"; };
+		2877255E263BF99900761C74 /* UIFont+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extra.swift"; sourceTree = "<group>"; };
+		28772563263BFE1E00761C74 /* circularstd-book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "circularstd-book.otf"; sourceTree = "<group>"; };
+		28772566263C059E00761C74 /* PageLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageLocale.swift; sourceTree = "<group>"; };
 		28876FF32639571900A721B8 /* MapTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28876FF62639571900A721B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28876FF82639571900A721B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -160,6 +168,7 @@
 		2877252F2639D2D600761C74 /* PageViewController */ = {
 			isa = PBXGroup;
 			children = (
+				28772565263C058F00761C74 /* Locale */,
 				287725302639D2E200761C74 /* Views */,
 				2877252D2639D08C00761C74 /* PageViewController.swift */,
 			);
@@ -180,6 +189,7 @@
 		28772537263AC8CA00761C74 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				2877255D263BF90A00761C74 /* Fonts */,
 				28876FFF2639571D00A721B8 /* Assets.xcassets */,
 				288770042639571D00A721B8 /* Info.plist */,
 				28772538263AC8DB00761C74 /* Assets.swift */,
@@ -238,6 +248,8 @@
 				2877253A263AD57D00761C74 /* UIColor+Extra.swift */,
 				28772545263B027300761C74 /* UIViewController+Extra.swift */,
 				28772547263B02BA00761C74 /* UIImage+Extra.swift */,
+				28772559263BF05C00761C74 /* UIView+Extra.swift */,
+				2877255E263BF99900761C74 /* UIFont+Extra.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -248,6 +260,22 @@
 				2877254E263B1CC000761C74 /* String+Extra.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		2877255D263BF90A00761C74 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				28772563263BFE1E00761C74 /* circularstd-book.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		28772565263C058F00761C74 /* Locale */ = {
+			isa = PBXGroup;
+			children = (
+				28772566263C059E00761C74 /* PageLocale.swift */,
+			);
+			path = Locale;
 			sourceTree = "<group>";
 		};
 		28876FEA2639571900A721B8 = {
@@ -445,6 +473,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28772564263BFE1E00761C74 /* circularstd-book.otf in Resources */,
 				288770032639571D00A721B8 /* LaunchScreen.storyboard in Resources */,
 				28772552263B232200761C74 /* Localizable.strings in Resources */,
 				288770002639571D00A721B8 /* Assets.xcassets in Resources */,
@@ -522,11 +551,13 @@
 				287725362639F14100761C74 /* PageContentView.swift in Sources */,
 				2877252C2639CE1600761C74 /* MapViewController.swift in Sources */,
 				28876FF72639571900A721B8 /* AppDelegate.swift in Sources */,
+				28772567263C059E00761C74 /* PageLocale.swift in Sources */,
 				2887702D26397C6500A721B8 /* UsersService.swift in Sources */,
 				28772548263B02BA00761C74 /* UIImage+Extra.swift in Sources */,
 				28772556263B2D7800761C74 /* FriendsCountView.swift in Sources */,
 				28772539263AC8DB00761C74 /* Assets.swift in Sources */,
 				2877254F263B1CC000761C74 /* String+Extra.swift in Sources */,
+				2877255A263BF05C00761C74 /* UIView+Extra.swift in Sources */,
 				28876FF92639571900A721B8 /* SceneDelegate.swift in Sources */,
 				287725342639DA1F00761C74 /* SwitchView.swift in Sources */,
 				2877254B263B1C6F00761C74 /* FriendsLocale.swift in Sources */,
@@ -537,6 +568,7 @@
 				28772543263AFE6300761C74 /* FriendsContentView.swift in Sources */,
 				287725292639B9AE00761C74 /* UserResponse.swift in Sources */,
 				28772540263AF63C00761C74 /* FriendsTableViewCell.swift in Sources */,
+				2877255F263BF99900761C74 /* UIFont+Extra.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

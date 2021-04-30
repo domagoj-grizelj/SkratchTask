@@ -45,7 +45,9 @@ private extension InputAccessoryView {
 
     func setupPlaceholderLabel() {
         addSubview(placeholderLabel)
-        placeholderLabel.text = "No. of users"
+        placeholderLabel.text = PageLocale.kInputPlaceholder.localized
+        placeholderLabel.font = UIFont.custom(type: .standard, size: 20)
+        placeholderLabel.textColor = .skratchGray
         placeholderLabel.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.left.equalTo(16)
@@ -57,6 +59,9 @@ private extension InputAccessoryView {
         addSubview(textField)
         textField.backgroundColor = .white
         textField.textAlignment = .right
+        textField.tintColor = .black
+        textField.keyboardType = .numberPad
+        textField.font = UIFont.custom(type: .standard, size: 24)
         textField.snp.makeConstraints {
             $0.top.bottom.equalToSuperview()
             $0.right.equalTo(-16)

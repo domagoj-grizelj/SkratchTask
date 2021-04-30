@@ -27,7 +27,8 @@ class PageContentView: UIView {
     }
 
     override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        return switchView.frame.contains(point) || friendsCountView.frame.contains(point)
+        let isContentEnabled = frame.contains(point) && friendsCountView.state != .count
+        return switchView.frame.contains(point) || friendsCountView.frame.contains(point) || isContentEnabled
     }
 
 }
@@ -42,6 +43,17 @@ extension PageContentView {
 
     func set(state: FriendsCountView.FriendsCountViewState, count: Int) {
         friendsCountView.set(state: state, count: count)
+        backgroundColor = state == .confirmation ? .transparentBlack : .clear
+    }
+
+    func updateBottomConstraint(for height: CGFloat) {
+        friendsCountView.snp.updateConstraints {
+            if height == 60 {
+                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin).offset(safeAreaInsets.bottom - 24)
+            } else {
+                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin).offset(-height+safeAreaInsets.bottom - 24)
+            }
+        }
     }
 
 }
@@ -77,7 +89,7 @@ private extension PageContentView {
         friendsCountView.layer.shadowOffset = CGSize(width: 0, height: 2)
         friendsCountView.snp.makeConstraints {
             $0.right.equalTo(-24)
-            $0.bottom.equalTo(-24)
+            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
             $0.width.greaterThanOrEqualTo(48)
         }
     }

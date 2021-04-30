@@ -8,6 +8,7 @@
 import UIKit
 
 // MARK: - Navigation Style Methods
+
 extension UIViewController {
 
     func setSolidNavigationStyle(withBackgroundColor backgroundColor: UIColor, tintColor: UIColor, shadowColor: UIColor?) {
@@ -39,5 +40,6 @@ extension UIViewController {
             block?(notification)
         })
     }
+    
 }
 

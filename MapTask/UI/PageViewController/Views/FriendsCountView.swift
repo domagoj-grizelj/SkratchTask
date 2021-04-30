@@ -12,6 +12,8 @@ class FriendsCountView: UIView {
     // MARK: - Properties
 
     let countButton = UIButton()
+    var state: FriendsCountViewState = .count
+    var numberOfUsers = 50
 
     // MARK: - Lifecycle
 
@@ -31,6 +33,9 @@ class FriendsCountView: UIView {
 extension FriendsCountView {
 
     func set(state: FriendsCountViewState, count: Int) {
+        self.state = state
+        numberOfUsers = count
+        
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0, options: .curveEaseInOut) {
             switch state {
             case .count:
@@ -63,7 +68,8 @@ private extension FriendsCountView {
         countButton.contentMode = .center
         countButton.clipsToBounds = true
         countButton.adjustsImageWhenHighlighted = false
-        countButton.setTitle("5", for: .normal)
+        countButton.setTitle(String(numberOfUsers), for: .normal)
+        countButton.titleLabel?.font = UIFont.custom(type: .standard, size: 24)
         countButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
         countButton.setTitleColor(.black, for: .normal)
         countButton.snp.makeConstraints {

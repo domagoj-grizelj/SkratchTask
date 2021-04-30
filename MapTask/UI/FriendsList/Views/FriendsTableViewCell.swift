@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class FriendsTableViewCell: UITableViewCell {
 
@@ -20,6 +21,18 @@ class FriendsTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
         setupViews()
+    }
+
+}
+
+// MARK: - Public Methods
+
+extension FriendsTableViewCell {
+
+    func setData(_ user: User) {
+        avatarImageView.kf.setImage(with: URL(string: user.picture?.medium ?? ""))
+        nameLabel.text = "\(user.name?.first ?? "") \(user.name?.last ?? "")"
+        usernameLabel.text = user.login?.username
     }
 
 }
@@ -52,11 +65,10 @@ private extension FriendsTableViewCell {
     func setupNameLabel() {
         addSubview(nameLabel)
         nameLabel.textAlignment = .left
-//        nameLabel.font = UIFont.custom(type: .medium, size: 16)
-        //        nameLabel.textColor = .inactive
-        nameLabel.text = "ASDASD"
+        nameLabel.font = UIFont.custom(type: .standard, size: 17)
+        nameLabel.textColor = .black
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(16)
+            $0.top.equalTo(10)
             $0.right.equalTo(-16)
             $0.height.equalTo(28)
             $0.left.equalTo(86)
@@ -66,11 +78,10 @@ private extension FriendsTableViewCell {
     func setupUsernameLabel() {
         addSubview(usernameLabel)
         usernameLabel.textAlignment = .left
-//        usernameLabel.font = UIFont.custom(type: .medium, size: 16)
-        //        usernameLabel.textColor = .inactive
-        usernameLabel.text = "ASDASD"
+        usernameLabel.font = UIFont.custom(type: .standard, size: 15)
+        usernameLabel.textColor = .skratchGray
         usernameLabel.snp.makeConstraints {
-            $0.bottom.equalTo(-16)
+            $0.bottom.equalTo(-10)
             $0.right.equalTo(-16)
             $0.height.equalTo(28)
             $0.left.equalTo(86)

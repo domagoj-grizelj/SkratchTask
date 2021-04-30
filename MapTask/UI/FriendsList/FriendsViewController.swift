@@ -9,7 +9,16 @@ import UIKit
 
 class FriendsViewController: UIViewController {
 
+    // MARK: - Properties
+
     private lazy var contentView = FriendsContentView()
+    var users: [User]? = [] {
+        didSet {
+            contentView.tableView.reloadData()
+        }
+    }
+
+    // MARK: - Lifecycle
 
     override func loadView() {
         view = contentView
@@ -46,12 +55,16 @@ class FriendsViewController: UIViewController {
 extension FriendsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        20
+        return users?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "friendsCell", for: indexPath) as? FriendsTableViewCell else {
             return FriendsTableViewCell()
+        }
+
+        if let user = users?[indexPath.row] {
+            cell.setData(user)
         }
 
         return cell
