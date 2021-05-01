@@ -10,19 +10,23 @@ import UIKit
 
 protocol PageDisplayLogic: AnyObject {
 
+    func displayUsers(_ users: [User])
+
 }
 
 class PageViewController: UIPageViewController {
 
     // MARK: - Properties
+
     var interactor: PageBusinessLogic?
     var router: PageRoutingLogic?
-    private lazy var contentView = PageContentView()
 
+    private lazy var contentView = PageContentView()
     private let friendCountInputView = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
     private let dummyTextField = UITextField()
     private var mapViewController: MapViewController
     private var friendsNavigationViewController: UINavigationController
+    
     private var friendsViewController: FriendsViewController? {
         return friendsNavigationViewController.children.first as? FriendsViewController
     }
@@ -53,7 +57,7 @@ class PageViewController: UIPageViewController {
         super.viewDidLoad()
         setupView()
         setupObservers()
-        getData()
+        loadData()
     }
 
     override var inputAccessoryView: UIView? {
@@ -104,21 +108,18 @@ private extension PageViewController {
 
 extension PageViewController: PageDisplayLogic {
 
+    func displayUsers(_ users: [User]) {
+
+    }
+
 }
 
 // MARK: - Data
 
 private extension PageViewController {
 
-    func getData() {
-//        usersService.fetchUsers(numberOfUsers: contentView.friendsCountView.numberOfUsers) { [weak self] result in
-//            switch result {
-//            case .failure(let error):
-//                print("greska")
-//                print(error) // TODO: Some error handling shoud be here
-//            case .success(let usersResponse): self?.friendsViewController?.users = usersResponse.results
-//            }
-//        }
+    func loadData() {
+        interactor?.getUsers(numberOfUser: contentView.friendsCountView.numberOfUsers)
     }
 
 }
@@ -151,7 +152,7 @@ private extension PageViewController {
 
         case .confirmation:
             contentView.set(state: .count, count: count)
-            getData()
+            loadData()
             friendCountInputView.textField.resignFirstResponder()
             friendCountInputView.isHidden = true
         }

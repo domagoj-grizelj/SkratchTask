@@ -9,6 +9,8 @@
 import Foundation
 
 protocol PagePresentationLogic {
+
+    func presentUsers(_ users: [User])
   
 }
 
@@ -21,5 +23,9 @@ class PagePresenter {
 // MARK: - Presentation Logic
 
 extension PagePresenter: PagePresentationLogic {
-  
+
+    func presentUsers(_ users: [User]) {
+        viewController?.displayUsers(users)
+    }
+
 }

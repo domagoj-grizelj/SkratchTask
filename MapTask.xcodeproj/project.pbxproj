@@ -38,6 +38,7 @@
 		28772586263C803B00761C74 /* FriendsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772582263C803B00761C74 /* FriendsPresenter.swift */; };
 		28772587263C803B00761C74 /* FriendsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772583263C803B00761C74 /* FriendsRouter.swift */; };
 		28772589263C803B00761C74 /* FriendsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772585263C803B00761C74 /* FriendsInteractor.swift */; };
+		2877258C263DE20D00761C74 /* PageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877258B263DE20D00761C74 /* PageWorker.swift */; };
 		28876FF72639571900A721B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF62639571900A721B8 /* AppDelegate.swift */; };
 		28876FF92639571900A721B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF82639571900A721B8 /* SceneDelegate.swift */; };
 		288770002639571D00A721B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28876FFF2639571D00A721B8 /* Assets.xcassets */; };
@@ -45,7 +46,7 @@
 		2887700E2639571D00A721B8 /* MapTaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887700D2639571D00A721B8 /* MapTaskTests.swift */; };
 		288770192639571D00A721B8 /* MapTaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 288770182639571D00A721B8 /* MapTaskUITests.swift */; };
 		2887702A26396FF000A721B8 /* BaseTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887702926396FF000A721B8 /* BaseTarget.swift */; };
-		2887702D26397C6500A721B8 /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887702C26397C6500A721B8 /* UsersService.swift */; };
+		2887702D26397C6500A721B8 /* UsersProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2887702C26397C6500A721B8 /* UsersProvider.swift */; };
 		28B8EBC326397F7A0042D33E /* UsersTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8EBC226397F7A0042D33E /* UsersTarget.swift */; };
 		28B8EBC62639841C0042D33E /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8EBC52639841C0042D33E /* User.swift */; };
 		28B8EBC826398BEB0042D33E /* Moya+Extra.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28B8EBC726398BEB0042D33E /* Moya+Extra.swift */; };
@@ -101,6 +102,7 @@
 		28772582263C803B00761C74 /* FriendsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsPresenter.swift; sourceTree = "<group>"; };
 		28772583263C803B00761C74 /* FriendsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRouter.swift; sourceTree = "<group>"; };
 		28772585263C803B00761C74 /* FriendsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsInteractor.swift; sourceTree = "<group>"; };
+		2877258B263DE20D00761C74 /* PageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageWorker.swift; sourceTree = "<group>"; };
 		28876FF32639571900A721B8 /* MapTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28876FF62639571900A721B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28876FF82639571900A721B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,7 +116,7 @@
 		288770182639571D00A721B8 /* MapTaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTaskUITests.swift; sourceTree = "<group>"; };
 		2887701A2639571D00A721B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2887702926396FF000A721B8 /* BaseTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTarget.swift; sourceTree = "<group>"; };
-		2887702C26397C6500A721B8 /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
+		2887702C26397C6500A721B8 /* UsersProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersProvider.swift; sourceTree = "<group>"; };
 		28B8EBC226397F7A0042D33E /* UsersTarget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersTarget.swift; sourceTree = "<group>"; };
 		28B8EBC52639841C0042D33E /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		28B8EBC726398BEB0042D33E /* Moya+Extra.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Moya+Extra.swift"; sourceTree = "<group>"; };
@@ -178,9 +180,9 @@
 			isa = PBXGroup;
 			children = (
 				28772544263B025B00761C74 /* Common */,
+				2877252F2639D2D600761C74 /* PageViewController */,
 				2877253D263AF2E700761C74 /* Friends */,
 				2877253C263AF2DD00761C74 /* Map */,
-				2877252F2639D2D600761C74 /* PageViewController */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -188,6 +190,7 @@
 		2877252F2639D2D600761C74 /* PageViewController */ = {
 			isa = PBXGroup;
 			children = (
+				2877258A263DE1F200761C74 /* Workers */,
 				28772565263C058F00761C74 /* Locale */,
 				287725302639D2E200761C74 /* Views */,
 				2877252D2639D08C00761C74 /* PageViewController.swift */,
@@ -308,6 +311,22 @@
 			path = Locale;
 			sourceTree = "<group>";
 		};
+		2877258A263DE1F200761C74 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				2877258B263DE20D00761C74 /* PageWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		2877258D263DE24100761C74 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				2887702C26397C6500A721B8 /* UsersProvider.swift */,
+			);
+			path = Providers;
+			sourceTree = "<group>";
+		};
 		28876FEA2639571900A721B8 = {
 			isa = PBXGroup;
 			children = (
@@ -366,6 +385,7 @@
 		2887702626396F7000A721B8 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				2877258D263DE24100761C74 /* Providers */,
 				28B8EBC726398BEB0042D33E /* Moya+Extra.swift */,
 				287725272639B99600761C74 /* Responses */,
 				287725262639B98F00761C74 /* Targets */,
@@ -376,7 +396,6 @@
 		2887702B26397C5600A721B8 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				2887702C26397C6500A721B8 /* UsersService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -573,6 +592,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2877258C263DE20D00761C74 /* PageWorker.swift in Sources */,
 				28B8EBC826398BEB0042D33E /* Moya+Extra.swift in Sources */,
 				2877253B263AD57D00761C74 /* UIColor+Extra.swift in Sources */,
 				2877252E2639D08C00761C74 /* PageViewController.swift in Sources */,
@@ -585,7 +605,7 @@
 				28876FF72639571900A721B8 /* AppDelegate.swift in Sources */,
 				28772567263C059E00761C74 /* PageLocale.swift in Sources */,
 				28772581263C788200761C74 /* PageInteractor.swift in Sources */,
-				2887702D26397C6500A721B8 /* UsersService.swift in Sources */,
+				2887702D26397C6500A721B8 /* UsersProvider.swift in Sources */,
 				28772548263B02BA00761C74 /* UIImage+Extra.swift in Sources */,
 				28772556263B2D7800761C74 /* FriendsCountView.swift in Sources */,
 				28772589263C803B00761C74 /* FriendsInteractor.swift in Sources */,

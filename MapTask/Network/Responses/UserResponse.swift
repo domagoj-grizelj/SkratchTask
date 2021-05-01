@@ -9,8 +9,8 @@ import Foundation
 
 struct UserResponse: Codable {
 
-    let results: [User]?
-    let info: Info?
+    let results: [User]
+    let info: Info
 
     struct Info: Codable {
 
