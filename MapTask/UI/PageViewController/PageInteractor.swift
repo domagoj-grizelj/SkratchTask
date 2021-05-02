@@ -34,12 +34,12 @@ class PageInteractor: PageDataStore {
 extension PageInteractor: PageBusinessLogic {
 
     func getUsers(numberOfUser: Int) {
-        pageWorker.getUsers(numberOfUsers: numberOfUser) { result in
+        pageWorker.getUsers(numberOfUsers: numberOfUser) { [weak self] result in
             switch result {
             case .failure(let error): print(error)
             case .success(let users):
-                self.users = users
-                self.presenter?.presentUsers(users)
+                self?.users = users
+                self?.presenter?.presentUsers(users)
             }
         }
     }

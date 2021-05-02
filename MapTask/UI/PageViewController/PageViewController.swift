@@ -105,7 +105,8 @@ extension PageViewController: PageDisplayLogic {
 
     func displayUsers(_ users: [User]) {
         router?.passDataToFriends()
-        router?.passDataToMap()
+        let users = interactor?.users
+        router?.passDataToMap(users: users)
     }
 
 }

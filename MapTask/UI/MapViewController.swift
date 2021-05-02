@@ -20,7 +20,7 @@ class MapViewController: UIViewController {
     var interactor: (MapBusinessLogic & MapDataStore)?
     var router: MapRoutingLogic?
     private lazy var contentView = MapContentView()
-    private var users: [User]?
+    var users: [User]?
 
     init(delegate: MapRouterDelegate?) {
         super.init(nibName: nil, bundle: nil)
@@ -90,14 +90,13 @@ extension MapViewController: MGLMapViewDelegate {
         // For better performance, always try to reuse existing annotations.
         var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MapUserView
 
+        guard let user = users?.first(where: {$0.location?.coordinates?.longitude == String(annotation.coordinate.longitude) }) else {
+            return MGLAnnotationView()
+        }
+
         // If there’s no reusable annotation view available, initialize a new one.
         if annotationView == nil {
-            guard let users = interactor?.users,
-                  let user = users.first(where: {$0.location?.coordinates?.longitude == String(annotation.coordinate.longitude) }) else {
-                return nil
-            }
-
-            annotationView = MapUserView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            annotationView = MapUserView(frame: CGRect.zero)
             annotationView?.set(user)
         }
 

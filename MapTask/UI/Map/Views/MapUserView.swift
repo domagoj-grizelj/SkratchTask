@@ -14,7 +14,9 @@ class MapUserView: MGLAnnotationView {
 
     // MARK: - Properties
 
+    private let labelContainer = UIView()
     private let nameLabel = UILabel()
+    private let avatarContainer = UIView()
     private let avatarImageView = UIImageView()
 
     // MARK: - Lifecycle
@@ -34,9 +36,9 @@ class MapUserView: MGLAnnotationView {
 
 extension MapUserView {
 
-    func set(_ user: User) {
-        nameLabel.text = user.name?.first
-        avatarImageView.kf.setImage(with: URL(string: user.picture?.large ?? ""))
+    func set(_ user: User?) {
+        nameLabel.text = user?.name?.first
+        avatarImageView.kf.setImage(with: URL(string: user?.picture?.large ?? ""))
     }
 
 }
@@ -46,40 +48,68 @@ extension MapUserView {
 private extension MapUserView {
 
     func setupViews() {
-        backgroundColor = .green
+        backgroundColor = .clear
+        setupLabelContainer()
         setupNameLabel()
+        setupAvatarContainer()
         setupAvatarImageView()
-        snp.makeConstraints {
-            $0.width.height.equalTo(100)
+    }
+
+    func setupLabelContainer() {
+        addSubview(labelContainer)
+        labelContainer.backgroundColor = .white
+        labelContainer.layer.cornerRadius = 11
+        labelContainer.layer.shadowColor = UIColor.black.cgColor
+        labelContainer.layer.shadowOpacity = 0.15
+        labelContainer.layer.shadowRadius = 4
+        labelContainer.layer.shadowOffset = CGSize(width: 0, height: 1)
+        labelContainer.snp.makeConstraints {
+            $0.top.equalTo(0)
+            $0.height.equalTo(22)
+            $0.centerX.equalToSuperview()
         }
     }
 
     func setupNameLabel() {
-        addSubview(nameLabel)
-        nameLabel.backgroundColor = .white
+        labelContainer.addSubview(nameLabel)
+        nameLabel.layer.masksToBounds = true
+        nameLabel.backgroundColor = .clear
         nameLabel.textAlignment = .center
-        nameLabel.layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
-        nameLabel.layer.shadowRadius = 4
-        nameLabel.layer.shadowOffset = CGSize(width: 0, height: 1)
+
         nameLabel.font = UIFont.custom(type: .standard, size: 12)
         nameLabel.snp.makeConstraints {
-            $0.top.equalTo(0)
+            $0.top.bottom.equalTo(0)
+            $0.left.equalTo(8)
+            $0.right.equalTo(-8)
             $0.height.equalTo(22)
+            $0.centerX.equalToSuperview()
+        }
+    }
+
+    func setupAvatarContainer() {
+        addSubview(avatarContainer)
+        avatarContainer.backgroundColor = .white
+        avatarContainer.layer.cornerRadius = 30
+        avatarContainer.layer.shadowColor = UIColor.black.cgColor
+        avatarContainer.layer.shadowOpacity = 0.15
+        avatarContainer.layer.shadowRadius = 4
+        avatarContainer.layer.shadowOffset = CGSize(width: 0, height: 1)
+        avatarContainer.snp.makeConstraints {
+            $0.top.equalTo(30)
+            $0.width.height.equalTo(60)
+            $0.centerX.equalToSuperview()
         }
     }
 
     func setupAvatarImageView() {
-        addSubview(avatarImageView)
+        avatarContainer.addSubview(avatarImageView)
+        avatarImageView.layer.masksToBounds = true
         avatarImageView.backgroundColor = .white
         avatarImageView.layer.cornerRadius = 30
         avatarImageView.layer.borderColor = UIColor.white.cgColor
         avatarImageView.layer.borderWidth = 3
-        avatarImageView.layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
-        avatarImageView.layer.shadowRadius = 4
-        avatarImageView.layer.shadowOffset = CGSize(width: 0, height: 1)
         avatarImageView.snp.makeConstraints {
-            $0.width.height.equalTo(60)
-            $0.center.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
     }
 

@@ -22,7 +22,7 @@ protocol PageDataPassing {
 
     var dataStore: PageDataStore? { get }
     func passDataToFriends()
-    func passDataToMap()
+    func passDataToMap(users: [User]?)
 
 }
 
@@ -44,8 +44,9 @@ class PageRouter: PageDataPassing {
         friendsViewController?.interactor?.users = dataStore?.users
     }
 
-    func passDataToMap() {
-        mapViewController?.interactor?.users = dataStore?.users
+    func passDataToMap(users: [User]?) {
+        mapViewController?.users = users
+        mapViewController?.interactor?.users = users
     }
 
 }
