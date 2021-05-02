@@ -37,6 +37,7 @@ private extension FriendsContentView {
     func setupTableView() {
         addSubview(tableView)
         tableView.backgroundColor = .white
+        tableView.tableHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 16))
         tableView.separatorStyle = .none
         tableView.rowHeight = 70
         tableView.register(FriendsTableViewCell.self, forCellReuseIdentifier: "friendsCell")

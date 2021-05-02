@@ -15,6 +15,8 @@ class PageContentView: UIView {
     let switchView = SwitchView()
     let friendsCountView = FriendsCountView()
 
+    var bottomOffset: CGFloat = min(-(UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0.0), -34)
+
     // MARK: - Lifecycle
 
     override init(frame: CGRect) {
@@ -49,11 +51,11 @@ extension PageContentView {
     func updateBottomConstraint(for height: CGFloat) {
         friendsCountView.snp.updateConstraints {
             if height == 60 {
-                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
+                $0.bottom.equalTo(bottomOffset)
             } else if height > 200 {
-                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin).offset(-height+safeAreaInsets.bottom - 24)
+                $0.bottom.equalTo(bottomOffset).offset(-height - 24)
             } else {
-                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
+                $0.bottom.equalTo(bottomOffset)
             }
         }
     }
@@ -77,7 +79,7 @@ private extension PageContentView {
         switchView.layer.shadowOffset = CGSize(width: 0, height: 2)
         switchView.snp.makeConstraints {
             $0.left.equalTo(24)
-            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
+            $0.bottom.equalTo(bottomOffset)
             $0.width.equalTo(138)
             $0.height.equalTo(48)
         }
@@ -91,7 +93,7 @@ private extension PageContentView {
         friendsCountView.layer.shadowOffset = CGSize(width: 0, height: 2)
         friendsCountView.snp.makeConstraints {
             $0.right.equalTo(-24)
-            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
+            $0.bottom.equalTo(bottomOffset)
             $0.width.greaterThanOrEqualTo(48)
         }
     }

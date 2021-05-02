@@ -207,7 +207,6 @@
 		2877252A2639CDF900761C74 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				287725AA263F118C00761C74 /* New Group */,
 				28772544263B025B00761C74 /* Common */,
 				28772591263EE45100761C74 /* FriendDetails */,
 				2877252F2639D2D600761C74 /* PageViewController */,
@@ -399,13 +398,6 @@
 				287725A2263EF22100761C74 /* DateTools.swift */,
 			);
 			path = Tools;
-			sourceTree = "<group>";
-		};
-		287725AA263F118C00761C74 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		287725AD263F5FC300761C74 /* Locale */ = {

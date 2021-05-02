@@ -9,8 +9,6 @@ import UIKit
 
 protocol FriendsDisplayLogic: AnyObject {
 
-    func displayUsers()
-
 }
 
 class FriendsViewController: UIViewController {
@@ -22,7 +20,7 @@ class FriendsViewController: UIViewController {
     private lazy var contentView = FriendsContentView()
     var users: [User]? {
         didSet {
-            contentView.tableView.reloadData()
+            contentView.tableView.reloadSections(IndexSet(integer: 0), with: .fade)
         }
     }
 
@@ -71,6 +69,11 @@ class FriendsViewController: UIViewController {
         extendedLayoutIncludesOpaqueBars = true;
         setSolidNavigationStyle(withBackgroundColor: .white, tintColor: .black, shadowColor: .white)
         navigationItem.title = FriendsLocale.kNavigationTitle.localized
+        navigationController?.navigationBar.largeTitleTextAttributes =
+            [NSAttributedString.Key.font: UIFont.custom(type: .standard, size: 32)]
+        navigationController?.navigationBar.titleTextAttributes =
+            [NSAttributedString.Key.font: UIFont.custom(type: .standard, size: 18)]
+
     }
 
 }
@@ -78,10 +81,6 @@ class FriendsViewController: UIViewController {
 // MARK: - FriendsDisplayLogic
 
 extension FriendsViewController: FriendsDisplayLogic {
-
-    func displayUsers() {
-        contentView.tableView.reloadData()
-    }
 
 }
 
