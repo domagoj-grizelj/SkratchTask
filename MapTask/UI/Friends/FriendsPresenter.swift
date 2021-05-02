@@ -10,6 +10,8 @@ import Foundation
 
 protocol FriendsPresentationLogic {
 
+    func presentUsers(_ users: [User])
+
 }
 
 class FriendsPresenter {
@@ -22,4 +24,8 @@ class FriendsPresenter {
 
 extension FriendsPresenter: FriendsPresentationLogic {
 
+    func presentUsers(_ users: [User]) {
+        viewController?.displayUsers()
+    }
+    
 }

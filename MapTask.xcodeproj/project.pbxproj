@@ -39,6 +39,7 @@
 		28772587263C803B00761C74 /* FriendsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772583263C803B00761C74 /* FriendsRouter.swift */; };
 		28772589263C803B00761C74 /* FriendsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772585263C803B00761C74 /* FriendsInteractor.swift */; };
 		2877258C263DE20D00761C74 /* PageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877258B263DE20D00761C74 /* PageWorker.swift */; };
+		28772590263EA6E800761C74 /* MapUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877258F263EA6E800761C74 /* MapUserView.swift */; };
 		28876FF72639571900A721B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF62639571900A721B8 /* AppDelegate.swift */; };
 		28876FF92639571900A721B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF82639571900A721B8 /* SceneDelegate.swift */; };
 		288770002639571D00A721B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28876FFF2639571D00A721B8 /* Assets.xcassets */; };
@@ -103,6 +104,7 @@
 		28772583263C803B00761C74 /* FriendsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsRouter.swift; sourceTree = "<group>"; };
 		28772585263C803B00761C74 /* FriendsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsInteractor.swift; sourceTree = "<group>"; };
 		2877258B263DE20D00761C74 /* PageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageWorker.swift; sourceTree = "<group>"; };
+		2877258F263EA6E800761C74 /* MapUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUserView.swift; sourceTree = "<group>"; };
 		28876FF32639571900A721B8 /* MapTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28876FF62639571900A721B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28876FF82639571900A721B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -227,7 +229,7 @@
 		2877253C263AF2DD00761C74 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				28772570263C77C700761C74 /* MapContentView.swift */,
+				2877258E263EA6D500761C74 /* Views */,
 				28772571263C77C700761C74 /* MapPresenter.swift */,
 				28772572263C77C700761C74 /* MapRouter.swift */,
 				28772573263C77C700761C74 /* MapViewController.swift */,
@@ -325,6 +327,15 @@
 				2887702C26397C6500A721B8 /* UsersProvider.swift */,
 			);
 			path = Providers;
+			sourceTree = "<group>";
+		};
+		2877258E263EA6D500761C74 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				28772570263C77C700761C74 /* MapContentView.swift */,
+				2877258F263EA6E800761C74 /* MapUserView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		28876FEA2639571900A721B8 = {
@@ -592,6 +603,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28772590263EA6E800761C74 /* MapUserView.swift in Sources */,
 				2877258C263DE20D00761C74 /* PageWorker.swift in Sources */,
 				28B8EBC826398BEB0042D33E /* Moya+Extra.swift in Sources */,
 				2877253B263AD57D00761C74 /* UIColor+Extra.swift in Sources */,

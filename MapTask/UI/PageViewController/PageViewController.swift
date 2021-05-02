@@ -18,18 +18,12 @@ class PageViewController: UIPageViewController {
 
     // MARK: - Properties
 
-    var interactor: PageBusinessLogic?
-    var router: PageRoutingLogic?
+    var interactor: (PageBusinessLogic & PageDataStore)?
+    var router: (PageRoutingLogic & PageDataPassing)?
 
     private lazy var contentView = PageContentView()
     private let friendCountInputView = InputAccessoryView(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
     private let dummyTextField = UITextField()
-    private var mapViewController: MapViewController
-    private var friendsNavigationViewController: UINavigationController
-    
-    private var friendsViewController: FriendsViewController? {
-        return friendsNavigationViewController.children.first as? FriendsViewController
-    }
 
     // MARK: - Lifecycle
 
@@ -37,8 +31,7 @@ class PageViewController: UIPageViewController {
         let interactor = PageInteractor()
         let presenter = PagePresenter()
         let router = PageRouter()
-        mapViewController = MapViewController(delegate: router)
-        friendsNavigationViewController = UINavigationController(rootViewController: FriendsViewController(delegate: router))
+        router.dataStore = interactor
         super.init(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         
         interactor.presenter = presenter
@@ -55,6 +48,8 @@ class PageViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        router?.presentContainerViewControllers()
         setupView()
         setupObservers()
         loadData()
@@ -79,7 +74,7 @@ private extension PageViewController {
     }
 
     func setupContentView() {
-        setViewControllers([mapViewController], direction: .forward, animated: true, completion: nil)
+        router?.switchToMapViewController()
 
         view.addSubview(contentView)
         contentView.switchView.mapButton.addTarget(self, action: #selector(didTapMapButton), for: .touchUpInside)
@@ -109,7 +104,7 @@ private extension PageViewController {
 extension PageViewController: PageDisplayLogic {
 
     func displayUsers(_ users: [User]) {
-
+        router?.passDataToFriends()
     }
 
 }
@@ -129,20 +124,20 @@ private extension PageViewController {
 private extension PageViewController {
 
     @objc func didTapMapButton() {
+        router?.switchToMapViewController()
         contentView.set(selectedSwitchButton: .map)
-        setViewControllers([mapViewController], direction: .reverse, animated: true, completion: nil)
         view.bringSubviewToFront(contentView)
     }
 
     @objc func didTapListButton() {
+        router?.switchToFriendsViewController()
         contentView.set(selectedSwitchButton: .list)
-        setViewControllers([friendsNavigationViewController], direction: .forward, animated: true, completion: nil)
         view.bringSubviewToFront(contentView)
     }
 
     @objc func didTapCountButton() {
         let stringNumber = friendCountInputView.textField.text ?? "5"
-        let count = Int(stringNumber) ?? 5
+        let count = Int(stringNumber) ?? contentView.friendsCountView.numberOfUsers
 
         switch contentView.friendsCountView.state {
         case .count:
@@ -151,10 +146,12 @@ private extension PageViewController {
             friendCountInputView.isHidden = false
 
         case .confirmation:
-            contentView.set(state: .count, count: count)
-            loadData()
             friendCountInputView.textField.resignFirstResponder()
             friendCountInputView.isHidden = true
+            contentView.set(state: .count, count: count)
+
+            guard count != contentView.friendsCountView.numberOfUsers else { return }
+            loadData()
         }
     }
 

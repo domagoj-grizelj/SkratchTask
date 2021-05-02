@@ -13,7 +13,7 @@ class FriendsCountView: UIView {
 
     let countButton = UIButton()
     var state: FriendsCountViewState = .count
-    var numberOfUsers = 50
+    var numberOfUsers = 5
 
     // MARK: - Lifecycle
 

@@ -9,20 +9,17 @@ import UIKit
 
 protocol FriendsDisplayLogic: AnyObject {
 
+    func displayUsers()
+
 }
 
 class FriendsViewController: UIViewController {
 
     // MARK: - Properties
 
-    var interactor: FriendsBusinessLogic?
+    var interactor: (FriendsBusinessLogic & FriendsDataStore)?
     var router: FriendsRoutingLogic?
     private lazy var contentView = FriendsContentView()
-    var users: [User]? = [] {
-        didSet {
-            contentView.tableView.reloadData()
-        }
-    }
 
     // MARK: - Lifecycle
 
@@ -31,11 +28,11 @@ class FriendsViewController: UIViewController {
         let interactor = FriendsInteractor()
         let presenter = FriendsPresenter()
         let router = FriendsRouter()
+        router.dataStore = interactor
         interactor.presenter = presenter
         presenter.viewController = self
         router.viewController = self
         router.delegate = delegate
-//        homePostsDataSource.delegate = self
         self.interactor = interactor
         self.router = router
     }
@@ -78,6 +75,9 @@ class FriendsViewController: UIViewController {
 
 extension FriendsViewController: FriendsDisplayLogic {
 
+    func displayUsers() {
+        contentView.tableView.reloadData()
+    }
 
 }
 
@@ -86,7 +86,7 @@ extension FriendsViewController: FriendsDisplayLogic {
 extension FriendsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users?.count ?? 0
+        return interactor?.users?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,7 +94,7 @@ extension FriendsViewController: UITableViewDataSource {
             return FriendsTableViewCell()
         }
 
-        if let user = users?[indexPath.row] {
+        if let user = interactor?.users?[indexPath.row] {
             cell.setData(user)
         }
 

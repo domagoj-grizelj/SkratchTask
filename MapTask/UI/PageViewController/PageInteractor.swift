@@ -11,14 +11,21 @@ import Foundation
 protocol PageBusinessLogic {
 
     func getUsers(numberOfUser: Int)
-//    var users: [User]? { get }
 
 }
 
-class PageInteractor {
+protocol PageDataStore {
+
+    var users: [User]? { get }
+
+}
+
+class PageInteractor: PageDataStore {
 
     var presenter: PagePresentationLogic?
     let pageWorker = PageWorker()
+
+    var users: [User]?
 
 }
 
@@ -31,6 +38,7 @@ extension PageInteractor: PageBusinessLogic {
             switch result {
             case .failure(let error): print(error)
             case .success(let users):
+                self.users = users
                 self.presenter?.presentUsers(users)
             }
         }
