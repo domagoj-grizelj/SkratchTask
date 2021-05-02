@@ -10,9 +10,7 @@ import UIKit
 class FriendDetailsTableViewCell: UITableViewCell {
 
     private let containerView = UIView()
-    private let iconImageView = UIImageView()
-    private let titleLabel = UILabel()
-    private let subtitleLabel = UILabel()
+    private let friendDetailsSubtitleView = FriendDetailsSubtitleView()
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,9 +28,9 @@ class FriendDetailsTableViewCell: UITableViewCell {
 extension FriendDetailsTableViewCell {
 
     func set(icon: UIImage?, title: String?, subtitle: String?) {
-        iconImageView.image = icon
-        titleLabel.text = title
-        subtitleLabel.text = subtitle
+        friendDetailsSubtitleView.iconImageView.image = icon
+        friendDetailsSubtitleView.titleLabel.text = title
+        friendDetailsSubtitleView.subtitleLabel.text = subtitle
     }
 
 }
@@ -44,9 +42,7 @@ private extension FriendDetailsTableViewCell {
     func setupViews() {
         selectionStyle = .none
         setupContainerView()
-        setupIconImageView()
-        setupTitleLabel()
-        setupSubtitleLabel()
+        setupFriendDetailsSubtitleView()
     }
 
     func setupContainerView() {
@@ -62,36 +58,10 @@ private extension FriendDetailsTableViewCell {
         }
     }
 
-    func setupIconImageView() {
-        containerView.addSubview(iconImageView)
-        iconImageView.contentMode = .center
-        iconImageView.snp.makeConstraints {
-            $0.size.equalTo(20)
-            $0.top.left.equalTo(16)
-        }
-    }
-
-    func setupTitleLabel() {
-        containerView.addSubview(titleLabel)
-        titleLabel.font = UIFont.custom(type: .standard, size: 17)
-        titleLabel.numberOfLines = 0
-        titleLabel.snp.makeConstraints {
-            $0.top.equalTo(14)
-            $0.right.equalTo(-24)
-            $0.left.equalTo(iconImageView.snp.right).offset(24)
-        }
-    }
-
-    func setupSubtitleLabel() {
-        containerView.addSubview(subtitleLabel)
-        subtitleLabel.font = UIFont.custom(type: .standard, size: 14)
-        subtitleLabel.numberOfLines = 0
-        subtitleLabel.textColor = .skratchGray
-        subtitleLabel.snp.makeConstraints {
-            $0.top.equalTo(titleLabel.snp.bottom)
-            $0.right.equalTo(-24)
-            $0.left.equalTo(iconImageView.snp.right).offset(24)
-            $0.bottom.equalToSuperview().offset(-16)
+    func setupFriendDetailsSubtitleView() {
+        containerView.addSubview(friendDetailsSubtitleView)
+        friendDetailsSubtitleView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
         }
     }
 

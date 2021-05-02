@@ -9,8 +9,8 @@ import UIKit
 
 class FriendDetailsView: UIView {
 
-    private let iconImageView = UIImageView()
-    private let titleLabel = UILabel()
+    let iconImageView = UIImageView()
+    let titleLabel = UILabel()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,6 +19,12 @@ class FriendDetailsView: UIView {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+
+    func setupViews() {
+        setupIconImageView()
+        setupTitleLabel()
     }
 
 }
@@ -37,11 +43,6 @@ extension FriendDetailsView {
 // MARK: - Private Methods
 
 private extension FriendDetailsView {
-
-    func setupViews() {
-        setupIconImageView()
-        setupTitleLabel()
-    }
 
     func setupIconImageView() {
         addSubview(iconImageView)
