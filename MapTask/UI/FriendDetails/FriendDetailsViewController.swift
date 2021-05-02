@@ -73,27 +73,52 @@ private extension FriendDetailsViewController {
 
 extension FriendDetailsViewController: UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        switch section {
+        case 0: return 2
+        case 1: return 1
+        default: return 0
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendDetailsCell", for: indexPath) as? FriendDetailsTableViewCell else {
-          return FriendDetailsTableViewCell()
+        switch indexPath.section {
+        case 0:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendDetailsCell", for: indexPath) as? FriendDetailsTableViewCell else {
+              return FriendDetailsTableViewCell()
+            }
+
+            if indexPath.row == 0 {
+                let title = "\(user.gender?.capitalizingFirstLetter() ?? ""), \(user.dob?.age ?? 0)"
+                let subtitle = DateTools.getFormattedStringFrom(dateString: user.dob?.date)
+                cell.set(icon: Assets.kBalloonIcon.image, title: title, subtitle: subtitle)
+
+            } else if indexPath.row == 1 {
+                let title = "\(user.location?.street?.number ?? 0) \(user.location?.street?.name ?? "")"
+                let subtitle = "\(user.location?.city ?? ""), \(user.location?.state ?? ""), \(user.location?.country ?? "")"
+                cell.set(icon: Assets.kPinIcon.image, title: title, subtitle: subtitle)
+            }
+
+            return cell
+
+        case 1:
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendContactCell", for: indexPath) as? FriendContactTableViewCell else {
+              return FriendContactTableViewCell()
+            }
+
+            cell.phoneView.set(icon: Assets.kPhoneIcon.image, title: user.phone)
+            cell.emailView.set(icon: Assets.kEmailIcon.image, title: user.email)
+
+            return cell
+
+        default: return UITableViewCell()
         }
 
-        if indexPath.row == 0 {
-            let title = "\(user.gender?.capitalizingFirstLetter() ?? ""), \(user.dob?.age ?? 0)"
-            let subtitle = DateTools.getFormattedStringFrom(dateString: user.dob?.date)
-            cell.set(icon: Assets.kBalloonIcon.image, title: title, subtitle: subtitle)
 
-        } else if indexPath.row == 1 {
-            let title = "\(user.location?.street?.number ?? 0) \(user.location?.street?.name ?? "")"
-            let subtitle = "\(user.location?.city ?? ""), \(user.location?.state ?? ""), \(user.location?.country ?? "")"
-            cell.set(icon: Assets.kPinIcon.image, title: title, subtitle: subtitle)
-        }
-
-        return cell
     }
 
 }

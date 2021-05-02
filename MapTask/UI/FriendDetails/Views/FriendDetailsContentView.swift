@@ -49,6 +49,7 @@ private extension FriendDetailsContentView {
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
         tableView.register(FriendDetailsTableViewCell.self, forCellReuseIdentifier: "FriendDetailsCell")
+        tableView.register(FriendContactTableViewCell.self, forCellReuseIdentifier: "FriendContactCell")
         tableView.snp.makeConstraints {
           $0.edges.equalToSuperview()
         }
