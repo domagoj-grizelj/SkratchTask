@@ -40,6 +40,12 @@
 		28772589263C803B00761C74 /* FriendsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772585263C803B00761C74 /* FriendsInteractor.swift */; };
 		2877258C263DE20D00761C74 /* PageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877258B263DE20D00761C74 /* PageWorker.swift */; };
 		28772590263EA6E800761C74 /* MapUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877258F263EA6E800761C74 /* MapUserView.swift */; };
+		28772597263EE47100761C74 /* FriendDetailsContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772592263EE47100761C74 /* FriendDetailsContentView.swift */; };
+		28772598263EE47100761C74 /* FriendDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772593263EE47100761C74 /* FriendDetailsPresenter.swift */; };
+		28772599263EE47100761C74 /* FriendDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772594263EE47100761C74 /* FriendDetailsRouter.swift */; };
+		2877259A263EE47100761C74 /* FriendDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772595263EE47100761C74 /* FriendDetailsViewController.swift */; };
+		2877259B263EE47100761C74 /* FriendDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28772596263EE47100761C74 /* FriendDetailsInteractor.swift */; };
+		2877259E263EE4AF00761C74 /* FriendDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2877259D263EE4AF00761C74 /* FriendDetailsHeaderView.swift */; };
 		28876FF72639571900A721B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF62639571900A721B8 /* AppDelegate.swift */; };
 		28876FF92639571900A721B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF82639571900A721B8 /* SceneDelegate.swift */; };
 		288770002639571D00A721B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28876FFF2639571D00A721B8 /* Assets.xcassets */; };
@@ -105,6 +111,12 @@
 		28772585263C803B00761C74 /* FriendsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsInteractor.swift; sourceTree = "<group>"; };
 		2877258B263DE20D00761C74 /* PageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageWorker.swift; sourceTree = "<group>"; };
 		2877258F263EA6E800761C74 /* MapUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapUserView.swift; sourceTree = "<group>"; };
+		28772592263EE47100761C74 /* FriendDetailsContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsContentView.swift; sourceTree = "<group>"; };
+		28772593263EE47100761C74 /* FriendDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsPresenter.swift; sourceTree = "<group>"; };
+		28772594263EE47100761C74 /* FriendDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsRouter.swift; sourceTree = "<group>"; };
+		28772595263EE47100761C74 /* FriendDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsViewController.swift; sourceTree = "<group>"; };
+		28772596263EE47100761C74 /* FriendDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsInteractor.swift; sourceTree = "<group>"; };
+		2877259D263EE4AF00761C74 /* FriendDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsHeaderView.swift; sourceTree = "<group>"; };
 		28876FF32639571900A721B8 /* MapTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28876FF62639571900A721B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28876FF82639571900A721B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -181,6 +193,7 @@
 		2877252A2639CDF900761C74 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				28772591263EE45100761C74 /* FriendDetails */,
 				28772544263B025B00761C74 /* Common */,
 				2877252F2639D2D600761C74 /* PageViewController */,
 				2877253D263AF2E700761C74 /* Friends */,
@@ -334,6 +347,27 @@
 			children = (
 				28772570263C77C700761C74 /* MapContentView.swift */,
 				2877258F263EA6E800761C74 /* MapUserView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		28772591263EE45100761C74 /* FriendDetails */ = {
+			isa = PBXGroup;
+			children = (
+				2877259C263EE47600761C74 /* Views */,
+				28772593263EE47100761C74 /* FriendDetailsPresenter.swift */,
+				28772594263EE47100761C74 /* FriendDetailsRouter.swift */,
+				28772595263EE47100761C74 /* FriendDetailsViewController.swift */,
+				28772596263EE47100761C74 /* FriendDetailsInteractor.swift */,
+			);
+			path = FriendDetails;
+			sourceTree = "<group>";
+		};
+		2877259C263EE47600761C74 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				28772592263EE47100761C74 /* FriendDetailsContentView.swift */,
+				2877259D263EE4AF00761C74 /* FriendDetailsHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -612,11 +646,13 @@
 				2887702A26396FF000A721B8 /* BaseTarget.swift in Sources */,
 				28772575263C77C700761C74 /* MapContentView.swift in Sources */,
 				287725322639D4A800761C74 /* FriendsViewController.swift in Sources */,
+				2877259A263EE47100761C74 /* FriendDetailsViewController.swift in Sources */,
 				28772577263C77C700761C74 /* MapRouter.swift in Sources */,
 				287725362639F14100761C74 /* PageContentView.swift in Sources */,
 				28876FF72639571900A721B8 /* AppDelegate.swift in Sources */,
 				28772567263C059E00761C74 /* PageLocale.swift in Sources */,
 				28772581263C788200761C74 /* PageInteractor.swift in Sources */,
+				28772597263EE47100761C74 /* FriendDetailsContentView.swift in Sources */,
 				2887702D26397C6500A721B8 /* UsersProvider.swift in Sources */,
 				28772548263B02BA00761C74 /* UIImage+Extra.swift in Sources */,
 				28772556263B2D7800761C74 /* FriendsCountView.swift in Sources */,
@@ -629,14 +665,18 @@
 				287725342639DA1F00761C74 /* SwitchView.swift in Sources */,
 				2877254B263B1C6F00761C74 /* FriendsLocale.swift in Sources */,
 				28B8EBC62639841C0042D33E /* User.swift in Sources */,
+				2877259B263EE47100761C74 /* FriendDetailsInteractor.swift in Sources */,
 				28772587263C803B00761C74 /* FriendsRouter.swift in Sources */,
+				2877259E263EE4AF00761C74 /* FriendDetailsHeaderView.swift in Sources */,
 				28772546263B027300761C74 /* UIViewController+Extra.swift in Sources */,
+				28772598263EE47100761C74 /* FriendDetailsPresenter.swift in Sources */,
 				28772558263B3D9300761C74 /* InputAccessoryView.swift in Sources */,
 				28B8EBC326397F7A0042D33E /* UsersTarget.swift in Sources */,
 				28772543263AFE6300761C74 /* FriendsContentView.swift in Sources */,
 				287725292639B9AE00761C74 /* UserResponse.swift in Sources */,
 				28772586263C803B00761C74 /* FriendsPresenter.swift in Sources */,
 				28772540263AF63C00761C74 /* FriendsTableViewCell.swift in Sources */,
+				28772599263EE47100761C74 /* FriendDetailsRouter.swift in Sources */,
 				2877255F263BF99900761C74 /* UIFont+Extra.swift in Sources */,
 				28772580263C788200761C74 /* PageRouter.swift in Sources */,
 				28772579263C77C700761C74 /* MapInteractor.swift in Sources */,
