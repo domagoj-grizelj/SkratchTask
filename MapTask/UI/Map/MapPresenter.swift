@@ -7,8 +7,12 @@
 //
 
 import Foundation
+import CoreLocation
+import Mapbox
 
 protocol MapPresentationLogic {
+
+    func presentPointAnnotations(withCoordinates coordinates: [CLLocationCoordinate2D])
 
 }
 
@@ -19,6 +23,20 @@ class MapPresenter {
 }
 
 // MARK: - Presentation Logic
+
 extension MapPresenter: MapPresentationLogic {
+
+    func presentPointAnnotations(withCoordinates coordinates: [CLLocationCoordinate2D]) {
+        var pointAnnotations = [MGLPointAnnotation]()
+
+        for coordinate in coordinates {
+            let point = MGLPointAnnotation()
+            point.coordinate = coordinate
+            point.title = "\(coordinate.latitude), \(coordinate.longitude)"
+            pointAnnotations.append(point)
+        }
+
+        viewController?.displayPointAnnotations(pointAnnotations)
+    }
 
 }

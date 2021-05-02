@@ -105,6 +105,7 @@ extension PageViewController: PageDisplayLogic {
 
     func displayUsers(_ users: [User]) {
         router?.passDataToFriends()
+        router?.passDataToMap()
     }
 
 }
@@ -148,9 +149,8 @@ private extension PageViewController {
         case .confirmation:
             friendCountInputView.textField.resignFirstResponder()
             friendCountInputView.isHidden = true
-            contentView.set(state: .count, count: count)
-
             guard count != contentView.friendsCountView.numberOfUsers else { return }
+            contentView.set(state: .count, count: count)
             loadData()
         }
     }

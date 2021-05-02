@@ -11,11 +11,13 @@ import Mapbox
 
 protocol MapDisplayLogic: AnyObject {
 
+    func displayPointAnnotations(_ pointAnnotations: [MGLPointAnnotation])
+
 }
 
 class MapViewController: UIViewController {
 
-    var interactor: MapBusinessLogic?
+    var interactor: (MapBusinessLogic & MapDataStore)?
     var router: MapRoutingLogic?
     private lazy var contentView = MapContentView()
 
@@ -24,6 +26,7 @@ class MapViewController: UIViewController {
         let interactor = MapInteractor()
         let presenter = MapPresenter()
         let router = MapRouter()
+        router.dataStore = interactor
         interactor.presenter = presenter
         presenter.viewController = self
         router.viewController = self
@@ -36,17 +39,13 @@ class MapViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func loadView() {
+        view = contentView
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let url = URL(string: "mapbox://styles/mapbox/streets-v11")
-        let mapView = MGLMapView(frame: view.bounds, styleURL: url)
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.setCenter(CLLocationCoordinate2D(latitude: 59.31, longitude: 18.06), zoomLevel: 9, animated: false)
-        view.addSubview(mapView)
     }
 
 }
@@ -55,6 +54,10 @@ class MapViewController: UIViewController {
 
 extension MapViewController: MapDisplayLogic {
 
+    func displayPointAnnotations(_ pointAnnotations: [MGLPointAnnotation]) {
+        contentView.mapView.addAnnotations(pointAnnotations)
+    }
+
 }
 
 // MARK: - Private Methods
@@ -62,13 +65,37 @@ extension MapViewController: MapDisplayLogic {
 private extension MapViewController {
 
     func setupViews() {
-        // setup title, background, navigation buttons, etc
         setupContentView()
     }
 
     func setupContentView() {
-        view.addSubview(contentView)
-        // add constraints
+        contentView.mapView.delegate = self
+    }
+
+}
+
+// MARK: - MGLMapViewDelegate
+
+extension MapViewController: MGLMapViewDelegate {
+
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+        guard annotation is MGLPointAnnotation else {
+            return nil
+        }
+
+        // Use the point annotation’s longitude value (as a string) as the reuse identifier for its view.
+        let reuseIdentifier = "\(annotation.coordinate.longitude)"
+
+        // For better performance, always try to reuse existing annotations.
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier)
+
+        // If there’s no reusable annotation view available, initialize a new one.
+        if annotationView == nil {
+            annotationView = MapUserView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+            annotationView!.bounds = CGRect(x: 0, y: 0, width: 40, height: 40)
+        }
+
+        return annotationView
     }
 
 }

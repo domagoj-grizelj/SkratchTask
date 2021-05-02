@@ -12,14 +12,21 @@ protocol MapRoutingLogic {
     
 }
 
+protocol MapDataPassing {
+
+    var dataStore: MapDataStore? { get }
+}
+
 protocol MapRouterDelegate: AnyObject {
     
 }
 
-class MapRouter {
+class MapRouter: MapDataPassing {
     
     weak var viewController: MapViewController?
     weak var delegate: MapRouterDelegate?
+
+    var dataStore: MapDataStore?
     
 }
 

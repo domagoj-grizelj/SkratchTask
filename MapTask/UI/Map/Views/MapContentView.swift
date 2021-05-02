@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Mapbox
 
 class MapContentView: UIView {
+
+    let mapView = MGLMapView(frame: .zero, styleURL: URL(string: "mapbox://styles/mapbox/streets-v11"))
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -20,9 +24,16 @@ class MapContentView: UIView {
 }
 
 // MARK: - Private Methods
+
 private extension MapContentView {
+
     func setupViews() {
-        // setup background, shadows, etc
-        // call other views setup
+        addSubview(mapView)
+        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        mapView.setCenter(CLLocationCoordinate2D(latitude: 59.31, longitude: 18.06), zoomLevel: 2, animated: false)
+        mapView.snp.makeConstraints {
+            $0.edges.equalToSuperview()
+        }
     }
+
 }

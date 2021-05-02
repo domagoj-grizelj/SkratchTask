@@ -8,8 +8,9 @@
 import Foundation
 import UIKit
 import SnapKit
+import Mapbox
 
-class MapUserView: UIView {
+class MapUserView: MGLAnnotationView {
 
     // MARK: - Properties
 
@@ -49,7 +50,7 @@ private extension MapUserView {
         setupNameLabel()
         setupAvatarImageView()
         snp.makeConstraints {
-            $0.width.height.equalTo(70)
+            $0.width.height.equalTo(100)
         }
     }
 
