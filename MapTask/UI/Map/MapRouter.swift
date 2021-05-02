@@ -9,6 +9,8 @@
 import Foundation
 
 protocol MapRoutingLogic {
+
+    func navigateToFriendDetails(user: User)
     
 }
 
@@ -18,6 +20,8 @@ protocol MapDataPassing {
 }
 
 protocol MapRouterDelegate: AnyObject {
+
+    func navigateToFriendDetails(user: User)
     
 }
 
@@ -31,6 +35,11 @@ class MapRouter: MapDataPassing {
 }
 
 // MARK: - Routing Logic
+
 extension MapRouter: MapRoutingLogic {
-    
+
+    func navigateToFriendDetails(user: User) {
+        delegate?.navigateToFriendDetails(user: user)
+    }
+
 }

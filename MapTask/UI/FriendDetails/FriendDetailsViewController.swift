@@ -117,8 +117,6 @@ extension FriendDetailsViewController: UITableViewDataSource {
 
         default: return UITableViewCell()
         }
-
-
     }
 
 }

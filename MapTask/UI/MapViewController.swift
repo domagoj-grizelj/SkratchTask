@@ -97,11 +97,18 @@ extension MapViewController: MGLMapViewDelegate {
 
         let annotationView = MapUserView(frame: CGRect.zero)
         annotationView.set(user)
+        annotationView.didTapOnAvatarButton = { [weak self] user in
+            self?.router?.navigateToFriendDetails(user: user)
+        }
 
         return annotationView
     }
 
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
+        handleAnnotations(mapView: mapView)
+    }
+
+    private func handleAnnotations(mapView: MGLMapView) {
         let swLimit = mapView.visibleCoordinateBounds.sw
         let neLimit = mapView.visibleCoordinateBounds.ne
         let visibleUsers = getObjectsInVisibleRect(swLimit: swLimit, neLimit: neLimit)

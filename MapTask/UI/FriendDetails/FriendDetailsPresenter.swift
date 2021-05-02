@@ -9,14 +9,15 @@
 import Foundation
 
 protocol FriendDetailsPresentationLogic {
-  
+
 }
 
 class FriendDetailsPresenter {
-  weak var viewController: FriendDetailsDisplayLogic?
+    weak var viewController: FriendDetailsDisplayLogic?
 }
 
 // MARK: - Presentation Logic
+
 extension FriendDetailsPresenter: FriendDetailsPresentationLogic {
-  
+
 }

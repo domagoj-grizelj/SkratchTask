@@ -19,6 +19,10 @@ class MapUserView: MGLAnnotationView {
     private let nameLabel = UILabel()
     private let avatarContainer = UIView()
     private let avatarImageView = UIImageView()
+    let avatarButton = UIButton()
+
+    var didTapOnAvatarButton: ((User) -> Void)?
+    var user: User?
 
     // MARK: - Lifecycle
 
@@ -38,6 +42,7 @@ class MapUserView: MGLAnnotationView {
 extension MapUserView {
 
     func set(_ user: User?) {
+        self.user = user
         let imageUrl = URL(string: user?.picture?.large ?? "")
         nameLabel.text = user?.name?.first
         avatarImageView.kf.setImage(with: imageUrl, options: [.transition(ImageTransition.fade(0.3)), .forceTransition])
@@ -59,6 +64,7 @@ private extension MapUserView {
         setupNameLabel()
         setupAvatarContainer()
         setupAvatarImageView()
+        setupAvatarButton()
     }
 
     func setupLabelContainer() {
@@ -117,6 +123,19 @@ private extension MapUserView {
         avatarImageView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
+    }
+
+    func setupAvatarButton() {
+        addSubview(avatarButton)
+        avatarButton.addTarget(self, action: #selector(tappedOnAvatar), for: .touchUpInside)
+        avatarButton.snp.makeConstraints {
+            $0.edges.equalTo(avatarImageView)
+        }
+    }
+
+    @objc private func tappedOnAvatar() {
+        guard let user = user else { return }
+        didTapOnAvatarButton?(user)
     }
 
 }

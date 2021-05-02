@@ -9,19 +9,22 @@
 import Foundation
 
 protocol FriendDetailsRoutingLogic {
-  
+
 }
 
 protocol FriendDetailsRouterDelegate: AnyObject {
-  
+
 }
 
 class FriendDetailsRouter {
-  weak var viewController: FriendDetailsViewController?
-  weak var delegate: FriendDetailsRouterDelegate?
+
+    weak var viewController: FriendDetailsViewController?
+    weak var delegate: FriendDetailsRouterDelegate?
+
 }
 
 // MARK: - Routing Logic
+
 extension FriendDetailsRouter: FriendDetailsRoutingLogic {
-  
+
 }

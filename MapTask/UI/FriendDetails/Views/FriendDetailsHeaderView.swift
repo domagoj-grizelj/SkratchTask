@@ -29,7 +29,7 @@ class FriendDetailsHeaderView: UIView {
 extension FriendDetailsHeaderView {
 
     func set(user: User) {
-        nameLabel.text = user.name?.first
+        nameLabel.text = "\(user.name?.first?.capitalizingFirstLetter() ?? "") \(user.name?.last?.capitalizingFirstLetter() ?? "")"
         usernameLabel.text = user.login?.username
 
         let imageUrl = URL(string: user.picture?.large ?? "")
