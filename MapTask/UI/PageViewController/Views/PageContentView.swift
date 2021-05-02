@@ -45,7 +45,9 @@ extension PageContentView {
 
     func set(state: FriendsCountView.FriendsCountViewState, count: Int) {
         friendsCountView.set(state: state, count: count)
-        backgroundColor = state == .confirmation ? .transparentBlack : .clear
+        UIView.animate(withDuration: 0.4) {
+            self.backgroundColor = state == .confirmation ? .transparentBlack : .clear
+        }
     }
 
     func updateBottomConstraint(for height: CGFloat) {
