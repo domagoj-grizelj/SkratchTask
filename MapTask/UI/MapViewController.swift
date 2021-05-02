@@ -98,7 +98,7 @@ extension MapViewController: MGLMapViewDelegate {
             return MGLAnnotationView()
         }
 
-        let annotationView = MapUserView(frame: CGRect.zero)
+        let annotationView = MapUserView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
         annotationView.set(user)
         annotationView.didTapOnAvatarButton = { [weak self] user in
             self?.router?.navigateToFriendDetails(user: user)

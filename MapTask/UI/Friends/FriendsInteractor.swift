@@ -11,23 +11,9 @@ import Foundation
 protocol FriendsBusinessLogic {
 
 }
-
-protocol FriendsDataStore {
-
-    var users: [User]? { get set }
-
-}
-
-class FriendsInteractor: FriendsDataStore {
+class FriendsInteractor {
 
     var presenter: FriendsPresentationLogic?
-
-    var users: [User]? {
-        didSet {
-            guard let users = users else { return }
-            presenter?.presentUsers(users)
-        }
-    }
 
 }
 

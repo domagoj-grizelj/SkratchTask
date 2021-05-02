@@ -42,7 +42,7 @@ class PageRouter: PageDataPassing {
 
     func passDataToFriends() {
         let friendsViewController = friendsNavigationViewController?.children.first as? FriendsViewController
-        friendsViewController?.interactor?.users = dataStore?.users
+        friendsViewController?.users = dataStore?.users
     }
 
     func passDataToMap(users: [User]?) {

@@ -17,9 +17,14 @@ class FriendsViewController: UIViewController {
 
     // MARK: - Properties
 
-    var interactor: (FriendsBusinessLogic & FriendsDataStore)?
+    var interactor: FriendsBusinessLogic?
     var router: FriendsRoutingLogic?
     private lazy var contentView = FriendsContentView()
+    var users: [User]? {
+        didSet {
+            contentView.tableView.reloadData()
+        }
+    }
 
     // MARK: - Lifecycle
 
@@ -28,7 +33,6 @@ class FriendsViewController: UIViewController {
         let interactor = FriendsInteractor()
         let presenter = FriendsPresenter()
         let router = FriendsRouter()
-        router.dataStore = interactor
         interactor.presenter = presenter
         presenter.viewController = self
         router.viewController = self
@@ -86,7 +90,7 @@ extension FriendsViewController: FriendsDisplayLogic {
 extension FriendsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.users?.count ?? 0
+        return users?.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,7 +98,7 @@ extension FriendsViewController: UITableViewDataSource {
             return FriendsTableViewCell()
         }
 
-        if let user = interactor?.users?[indexPath.row] {
+        if let user = users?[indexPath.row] {
             cell.setData(user)
         }
 
@@ -108,7 +112,7 @@ extension FriendsViewController: UITableViewDataSource {
 extension FriendsViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let user = interactor?.users?[indexPath.row] else { return }
+        guard let user = users?[indexPath.row] else { return }
         router?.navigateToFriendDetails(user: user)
     }
 

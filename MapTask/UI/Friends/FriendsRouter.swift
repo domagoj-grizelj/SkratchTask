@@ -14,23 +14,16 @@ protocol FriendsRoutingLogic {
 
 }
 
-protocol FriendsDataPassing {
-
-    var dataStore: FriendsDataStore? { get }
-}
-
 protocol FriendsRouterDelegate: AnyObject {
 
     func navigateToFriendDetails(user: User)
 
 }
 
-class FriendsRouter: FriendsDataPassing {
+class FriendsRouter {
 
     weak var viewController: FriendsViewController?
     weak var delegate: FriendsRouterDelegate?
-
-    var dataStore: FriendsDataStore?
 
 }
 

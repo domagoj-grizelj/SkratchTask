@@ -45,8 +45,9 @@ extension MapUserView {
         let imageUrl = URL(string: user?.picture?.large ?? "")
         nameLabel.text = user?.name?.first
         avatarImageView.kf.setImage(with: imageUrl, options: [.transition(ImageTransition.fade(0.3)), .forceTransition])
-        UIView.animate(withDuration: 0.4) {
+        UIView.animate(withDuration: 0.3, delay: 0.3, options: .curveEaseInOut) {
             self.alpha = 1
+            self.isHidden = false
         }
     }
 
@@ -57,6 +58,7 @@ extension MapUserView {
 private extension MapUserView {
 
     func setupViews() {
+        isHidden = true
         alpha = 0
         backgroundColor = .clear
         let tap = UITapGestureRecognizer(target: self, action: #selector(onViewTap))

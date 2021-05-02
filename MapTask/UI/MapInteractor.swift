@@ -43,7 +43,6 @@ extension MapInteractor: MapBusinessLogic {
             let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
 
             let pointAnnotation = MGLPointAnnotation()
-            pointAnnotation.title = "asdf"
             pointAnnotation.coordinate = coordinate
             newAnnotations.append(pointAnnotation)
         }
@@ -59,8 +58,13 @@ extension MapInteractor: MapBusinessLogic {
             }
         }
 
-        mapView.removeAnnotations(annotationsToRemove)
-        mapView.addAnnotations(newAnnotations)
+        if annotationsToRemove.count > 0 {
+            mapView.removeAnnotations(annotationsToRemove)
+        }
+
+        if newAnnotations.count > 0 {
+            mapView.addAnnotations(newAnnotations)
+        }
     }
 
     private func getObjectsInVisibleRect(swLimit: CLLocationCoordinate2D, neLimit: CLLocationCoordinate2D, users: [User]?) -> [User] {
