@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import Mapbox
 
 protocol MapBusinessLogic {
 
@@ -51,3 +52,5 @@ extension MapInteractor: MapBusinessLogic {
     }
 
 }
+
+

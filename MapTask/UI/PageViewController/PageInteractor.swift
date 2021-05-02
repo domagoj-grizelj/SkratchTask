@@ -16,7 +16,7 @@ protocol PageBusinessLogic {
 
 protocol PageDataStore {
 
-    var users: [User]? { get }
+    var users: [User]? { get set }
 
 }
 

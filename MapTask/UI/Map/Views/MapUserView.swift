@@ -34,7 +34,7 @@ class MapUserView: MGLAnnotationView {
 
 extension MapUserView {
 
-    func set(user: User) {
+    func set(_ user: User) {
         nameLabel.text = user.name?.first
         avatarImageView.kf.setImage(with: URL(string: user.picture?.large ?? ""))
     }
