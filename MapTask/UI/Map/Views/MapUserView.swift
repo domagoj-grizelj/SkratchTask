@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 import Mapbox
+import Kingfisher
 
 class MapUserView: MGLAnnotationView {
 
@@ -37,8 +38,12 @@ class MapUserView: MGLAnnotationView {
 extension MapUserView {
 
     func set(_ user: User?) {
+        let imageUrl = URL(string: user?.picture?.large ?? "")
+        UIView.animate(withDuration: 0.4) {
+            self.alpha = 1
+        }
         nameLabel.text = user?.name?.first
-        avatarImageView.kf.setImage(with: URL(string: user?.picture?.large ?? ""))
+        avatarImageView.kf.setImage(with: imageUrl, options: [.transition(ImageTransition.fade(0.3)), .forceTransition])
     }
 
 }
@@ -48,6 +53,7 @@ extension MapUserView {
 private extension MapUserView {
 
     func setupViews() {
+        alpha = 0
         backgroundColor = .clear
         setupLabelContainer()
         setupNameLabel()

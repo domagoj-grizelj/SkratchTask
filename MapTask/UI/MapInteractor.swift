@@ -12,7 +12,8 @@ import Mapbox
 
 protocol MapBusinessLogic {
 
-    func getPointAnnotations()
+    func clearPointAnnotations()
+    func getPointAnnotations(forUsers users: [User])
 
 }
 
@@ -27,7 +28,8 @@ class MapInteractor: MapDataStore {
     var presenter: MapPresentationLogic?
     var users: [User]? {
         didSet {
-            getPointAnnotations()
+            clearPointAnnotations()
+//            getPointAnnotations()
         }
     }
 
@@ -37,9 +39,7 @@ class MapInteractor: MapDataStore {
 
 extension MapInteractor: MapBusinessLogic {
 
-    func getPointAnnotations() {
-        guard let users = users else { return }
-
+    func getPointAnnotations(forUsers users: [User]) {
         var coordinates: [CLLocationCoordinate2D] = []
         for user in users {
             let latitude = CLLocationDegrees(user.location?.coordinates?.latitude ?? "0")
@@ -49,6 +49,10 @@ extension MapInteractor: MapBusinessLogic {
         }
 
         presenter?.presentPointAnnotations(withCoordinates: coordinates)
+    }
+
+    func clearPointAnnotations() {
+        presenter?.clearPointAnnotations()
     }
 
 }

@@ -13,6 +13,7 @@ import Mapbox
 protocol MapPresentationLogic {
 
     func presentPointAnnotations(withCoordinates coordinates: [CLLocationCoordinate2D])
+    func clearPointAnnotations()
 
 }
 
@@ -37,6 +38,10 @@ extension MapPresenter: MapPresentationLogic {
         }
 
         viewController?.displayPointAnnotations(pointAnnotations)
+    }
+
+    func clearPointAnnotations() {
+        viewController?.clearPointAnnotations()
     }
 
 }
