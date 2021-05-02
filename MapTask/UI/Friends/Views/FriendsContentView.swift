@@ -40,6 +40,7 @@ private extension FriendsContentView {
         tableView.separatorStyle = .none
         tableView.rowHeight = 70
         tableView.register(FriendsTableViewCell.self, forCellReuseIdentifier: "friendsCell")
+        tableView.contentInset.bottom = 80
         tableView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

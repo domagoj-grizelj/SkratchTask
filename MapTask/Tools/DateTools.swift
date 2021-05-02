@@ -21,6 +21,16 @@ struct DateTools {
         return dateFormatter.string(from: date)
     }
 
+    static func getFormattedDateAndTimeFrom(dateString: String?) -> String? {
+        guard let dateString = dateString else { return nil }
+
+        let dateFormatter = isoDateFormatter()
+        guard let date = dateFormatter.date(from: dateString) else { return nil }
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .long
+        return dateFormatter.string(from: date)
+    }
+
     private static func isoDateFormatter() -> DateFormatter {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZZZZZ"

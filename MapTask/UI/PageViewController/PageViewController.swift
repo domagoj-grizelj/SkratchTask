@@ -148,7 +148,6 @@ private extension PageViewController {
             friendCountInputView.isHidden = false
 
         case .confirmation:
-            guard count != contentView.friendsCountView.numberOfUsers else { return }
             friendCountInputView.textField.resignFirstResponder()
             friendCountInputView.isHidden = true
             contentView.set(state: .count, count: count)

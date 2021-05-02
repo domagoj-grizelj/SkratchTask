@@ -51,6 +51,8 @@
 		287725A5263EFAC900761C74 /* FriendContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287725A4263EFAC900761C74 /* FriendContactTableViewCell.swift */; };
 		287725A7263EFB4300761C74 /* FriendDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287725A6263EFB4300761C74 /* FriendDetailsView.swift */; };
 		287725A9263EFF4E00761C74 /* FriendDetailsSubtitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287725A8263EFF4E00761C74 /* FriendDetailsSubtitleView.swift */; };
+		287725AC263F55B000761C74 /* FriendDetailsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287725AB263F55B000761C74 /* FriendDetailsFooterView.swift */; };
+		287725AF263F5FD800761C74 /* FriendDetailsLocale.swift in Sources */ = {isa = PBXBuildFile; fileRef = 287725AE263F5FD800761C74 /* FriendDetailsLocale.swift */; };
 		28876FF72639571900A721B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF62639571900A721B8 /* AppDelegate.swift */; };
 		28876FF92639571900A721B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28876FF82639571900A721B8 /* SceneDelegate.swift */; };
 		288770002639571D00A721B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 28876FFF2639571D00A721B8 /* Assets.xcassets */; };
@@ -127,6 +129,8 @@
 		287725A4263EFAC900761C74 /* FriendContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendContactTableViewCell.swift; sourceTree = "<group>"; };
 		287725A6263EFB4300761C74 /* FriendDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsView.swift; sourceTree = "<group>"; };
 		287725A8263EFF4E00761C74 /* FriendDetailsSubtitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsSubtitleView.swift; sourceTree = "<group>"; };
+		287725AB263F55B000761C74 /* FriendDetailsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsFooterView.swift; sourceTree = "<group>"; };
+		287725AE263F5FD800761C74 /* FriendDetailsLocale.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendDetailsLocale.swift; sourceTree = "<group>"; };
 		28876FF32639571900A721B8 /* MapTask.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapTask.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		28876FF62639571900A721B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		28876FF82639571900A721B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -365,6 +369,7 @@
 		28772591263EE45100761C74 /* FriendDetails */ = {
 			isa = PBXGroup;
 			children = (
+				287725AD263F5FC300761C74 /* Locale */,
 				2877259C263EE47600761C74 /* Views */,
 				28772593263EE47100761C74 /* FriendDetailsPresenter.swift */,
 				28772594263EE47100761C74 /* FriendDetailsRouter.swift */,
@@ -383,6 +388,7 @@
 				287725A4263EFAC900761C74 /* FriendContactTableViewCell.swift */,
 				287725A6263EFB4300761C74 /* FriendDetailsView.swift */,
 				287725A8263EFF4E00761C74 /* FriendDetailsSubtitleView.swift */,
+				287725AB263F55B000761C74 /* FriendDetailsFooterView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -400,6 +406,14 @@
 			children = (
 			);
 			path = "New Group";
+			sourceTree = "<group>";
+		};
+		287725AD263F5FC300761C74 /* Locale */ = {
+			isa = PBXGroup;
+			children = (
+				287725AE263F5FD800761C74 /* FriendDetailsLocale.swift */,
+			);
+			path = Locale;
 			sourceTree = "<group>";
 		};
 		28876FEA2639571900A721B8 = {
@@ -690,10 +704,12 @@
 				287725342639DA1F00761C74 /* SwitchView.swift in Sources */,
 				287725A7263EFB4300761C74 /* FriendDetailsView.swift in Sources */,
 				287725A5263EFAC900761C74 /* FriendContactTableViewCell.swift in Sources */,
+				287725AC263F55B000761C74 /* FriendDetailsFooterView.swift in Sources */,
 				2877254B263B1C6F00761C74 /* FriendsLocale.swift in Sources */,
 				28B8EBC62639841C0042D33E /* User.swift in Sources */,
 				2877259B263EE47100761C74 /* FriendDetailsInteractor.swift in Sources */,
 				28772587263C803B00761C74 /* FriendsRouter.swift in Sources */,
+				287725AF263F5FD800761C74 /* FriendDetailsLocale.swift in Sources */,
 				2877259E263EE4AF00761C74 /* FriendDetailsHeaderView.swift in Sources */,
 				28772546263B027300761C74 /* UIViewController+Extra.swift in Sources */,
 				28772598263EE47100761C74 /* FriendDetailsPresenter.swift in Sources */,

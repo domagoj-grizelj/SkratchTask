@@ -49,9 +49,11 @@ extension PageContentView {
     func updateBottomConstraint(for height: CGFloat) {
         friendsCountView.snp.updateConstraints {
             if height == 60 {
-                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin).offset(safeAreaInsets.bottom - 24)
-            } else {
+                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
+            } else if height > 200 {
                 $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin).offset(-height+safeAreaInsets.bottom - 24)
+            } else {
+                $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
             }
         }
     }
@@ -75,7 +77,7 @@ private extension PageContentView {
         switchView.layer.shadowOffset = CGSize(width: 0, height: 2)
         switchView.snp.makeConstraints {
             $0.left.equalTo(24)
-            $0.bottom.equalTo(-24)
+            $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottomMargin)
             $0.width.equalTo(138)
             $0.height.equalTo(48)
         }

@@ -13,3 +13,7 @@
 // MARK: - Page scene
 
 "locale.page.input.placeholder" = "No. of users";
+
+// MARK: - Friend details
+
+"locale.friend.footer.registration" = "Registered on ";

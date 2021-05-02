@@ -12,6 +12,7 @@ class FriendDetailsContentView: UIView {
 
     private let tableHeaderView = FriendDetailsHeaderView()
     let tableView = UITableView()
+    private lazy var tableFooterView = FriendDetailsFooterView(frame: CGRect(x: 0, y: 0, width: frame.width, height: 80))
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -29,6 +30,7 @@ extension FriendDetailsContentView {
 
     func set(user: User) {
         tableHeaderView.set(user: user)
+        tableFooterView.set(user: user)
     }
 
 }
@@ -40,6 +42,7 @@ private extension FriendDetailsContentView {
     func setupViews() {
         setupTableView()
         setupTableHeaderView()
+        setupTableFooterView()
     }
 
     func setupTableView() {
@@ -48,6 +51,7 @@ private extension FriendDetailsContentView {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
+        tableView.tableFooterView?.frame.size.height = 40
         tableView.register(FriendDetailsTableViewCell.self, forCellReuseIdentifier: "FriendDetailsCell")
         tableView.register(FriendContactTableViewCell.self, forCellReuseIdentifier: "FriendContactCell")
         tableView.snp.makeConstraints {
@@ -61,4 +65,10 @@ private extension FriendDetailsContentView {
           $0.width.equalTo(self)
         })
     }
+
+    func setupTableFooterView() {
+        tableView.tableFooterView = tableFooterView
+
+    }
+
 }
