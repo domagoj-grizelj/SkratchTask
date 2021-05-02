@@ -17,8 +17,10 @@ class FriendDetailsViewController: UIViewController {
     var interactor: FriendDetailsBusinessLogic?
     var router: FriendDetailsRoutingLogic?
     private lazy var contentView = FriendDetailsContentView()
+    private let user: User
 
-    init(delegate: FriendDetailsRouterDelegate?) {
+    init(delegate: FriendDetailsRouterDelegate?, user: User) {
+        self.user = user
         super.init(nibName: nil, bundle: nil)
         let interactor = FriendDetailsInteractor()
         let presenter = FriendDetailsPresenter()

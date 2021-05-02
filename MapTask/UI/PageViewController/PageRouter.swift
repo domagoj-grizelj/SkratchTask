@@ -87,10 +87,33 @@ extension PageRouter: PageRoutingLogic {
 
 }
 
+// MARK: - MapRouterDelegate
+
 extension PageRouter: MapRouterDelegate {
 
 }
 
+// MARK: - FriendsRouterDelegate
+
 extension PageRouter: FriendsRouterDelegate {
+
+    func navigateToFriendDetails(user: User) {
+        let friendDetailsViewController = FriendDetailsViewController(delegate: self, user: user)
+
+        let options = SheetOptions(shrinkPresentingViewController: false)
+        let sheetViewController = SheetViewController(controller: friendDetailsViewController, sizes: [.percent(0.7)], options: options)
+        sheetViewController.cornerRadius = 30
+        sheetViewController.minimumSpaceAbovePullBar = 8
+        sheetViewController.gripSize = CGSize(width: 56, height: 5)
+        sheetViewController.gripColor = .paleBlue
+
+        viewController?.present(sheetViewController, animated: true, completion: nil)
+    }
+
+}
+
+// MARK: - FriendDetailsRouterDelegate
+
+extension PageRouter: FriendDetailsRouterDelegate {
 
 }

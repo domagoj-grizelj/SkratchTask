@@ -10,6 +10,8 @@ import Foundation
 
 protocol FriendsRoutingLogic {
 
+    func navigateToFriendDetails(user: User)
+
 }
 
 protocol FriendsDataPassing {
@@ -18,6 +20,8 @@ protocol FriendsDataPassing {
 }
 
 protocol FriendsRouterDelegate: AnyObject {
+
+    func navigateToFriendDetails(user: User)
 
 }
 
@@ -33,5 +37,9 @@ class FriendsRouter: FriendsDataPassing {
 // MARK: - Routing Logic
 
 extension FriendsRouter: FriendsRoutingLogic {
+
+    func navigateToFriendDetails(user: User) {
+        delegate?.navigateToFriendDetails(user: user)
+    }
 
 }

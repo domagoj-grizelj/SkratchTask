@@ -100,10 +100,16 @@ extension FriendsViewController: UITableViewDataSource {
 
         return cell
     }
+    
 }
 
 // MARK: - UITableViewDelegate
 
 extension FriendsViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let user = interactor?.users?[indexPath.row] else { return }
+        router?.navigateToFriendDetails(user: user)
+    }
 
 }
