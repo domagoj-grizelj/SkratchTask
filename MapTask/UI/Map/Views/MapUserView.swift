@@ -19,7 +19,6 @@ class MapUserView: MGLAnnotationView {
     private let nameLabel = UILabel()
     private let avatarContainer = UIView()
     private let avatarImageView = UIImageView()
-    let avatarButton = UIButton()
 
     var didTapOnAvatarButton: ((User) -> Void)?
     var user: User?
@@ -60,11 +59,12 @@ private extension MapUserView {
     func setupViews() {
         alpha = 0
         backgroundColor = .clear
+        let tap = UITapGestureRecognizer(target: self, action: #selector(onViewTap))
+        addGestureRecognizer(tap)
         setupLabelContainer()
         setupNameLabel()
         setupAvatarContainer()
         setupAvatarImageView()
-        setupAvatarButton()
     }
 
     func setupLabelContainer() {
@@ -125,15 +125,7 @@ private extension MapUserView {
         }
     }
 
-    func setupAvatarButton() {
-        addSubview(avatarButton)
-        avatarButton.addTarget(self, action: #selector(tappedOnAvatar), for: .touchUpInside)
-        avatarButton.snp.makeConstraints {
-            $0.edges.equalTo(avatarImageView)
-        }
-    }
-
-    @objc private func tappedOnAvatar() {
+    @objc private func onViewTap() {
         guard let user = user else { return }
         didTapOnAvatarButton?(user)
     }

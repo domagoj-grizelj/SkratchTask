@@ -47,7 +47,6 @@ class PageRouter: PageDataPassing {
 
     func passDataToMap(users: [User]?) {
         mapViewController?.users = users
-        mapViewController?.interactor?.users = users
     }
 
 }

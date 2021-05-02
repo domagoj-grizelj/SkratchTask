@@ -30,7 +30,7 @@ private extension MapContentView {
     func setupViews() {
         addSubview(mapView)
         mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.setCenter(CLLocationCoordinate2D(latitude: 59.31, longitude: 18.06), zoomLevel: 2, animated: false)
+        mapView.setCenter(CLLocationCoordinate2D(latitude: 59.31, longitude: 18.06), zoomLevel: 1, animated: false)
         mapView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }

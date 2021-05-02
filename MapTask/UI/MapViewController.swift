@@ -18,17 +18,20 @@ protocol MapDisplayLogic: AnyObject {
 
 class MapViewController: UIViewController {
 
-    var interactor: (MapBusinessLogic & MapDataStore)?
+    var interactor: MapBusinessLogic?
     var router: MapRoutingLogic?
     private lazy var contentView = MapContentView()
-    var users: [User]?
+    var users: [User]? {
+        didSet {
+            interactor?.handleAnnotations(forMapView: contentView.mapView, users: users)
+        }
+    }
 
     init(delegate: MapRouterDelegate?) {
         super.init(nibName: nil, bundle: nil)
         let interactor = MapInteractor()
         let presenter = MapPresenter()
         let router = MapRouter()
-        router.dataStore = interactor
         interactor.presenter = presenter
         presenter.viewController = self
         router.viewController = self
@@ -100,64 +103,15 @@ extension MapViewController: MGLMapViewDelegate {
         annotationView.didTapOnAvatarButton = { [weak self] user in
             self?.router?.navigateToFriendDetails(user: user)
         }
+        annotationView.snp.makeConstraints {
+            $0.size.equalTo(100)
+        }
 
         return annotationView
     }
 
     func mapView(_ mapView: MGLMapView, regionDidChangeAnimated animated: Bool) {
-        handleAnnotations(mapView: mapView)
-    }
-
-    private func handleAnnotations(mapView: MGLMapView) {
-        let swLimit = mapView.visibleCoordinateBounds.sw
-        let neLimit = mapView.visibleCoordinateBounds.ne
-        let visibleUsers = getObjectsInVisibleRect(swLimit: swLimit, neLimit: neLimit)
-
-        var newAnnotations: [MGLPointAnnotation] = []
-        for user in visibleUsers {
-            let latitude = CLLocationDegrees(user.location?.coordinates?.latitude ?? "0") ?? 0
-            let longitude = CLLocationDegrees(user.location?.coordinates?.longitude ?? "0") ?? 0
-            let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-
-            let pointAnnotation = MGLPointAnnotation()
-            pointAnnotation.coordinate = coordinate
-            newAnnotations.append(pointAnnotation)
-        }
-
-        var annotationsToRemove: [MGLAnnotation] = []
-        if let existingPointAnnotations = contentView.mapView.annotations {
-            for annotation in existingPointAnnotations {
-                if newAnnotations.contains(where: { $0.coordinate.latitude == annotation.coordinate.latitude && $0.coordinate.longitude == annotation.coordinate.longitude }) {
-                    newAnnotations.removeAll(where: { $0.coordinate.latitude == annotation.coordinate.latitude && $0.coordinate.longitude == annotation.coordinate.longitude })
-                } else {
-                    annotationsToRemove.append(annotation)
-                }
-            }
-        }
-
-        mapView.removeAnnotations(annotationsToRemove)
-        mapView.addAnnotations(newAnnotations)
-    }
-
-    private func getObjectsInVisibleRect(swLimit: CLLocationCoordinate2D, neLimit: CLLocationCoordinate2D) -> [User] {
-        guard let users = users else { return [] }
-
-        var limitedUsers: [User] = []
-        for user in users {
-            let latitude = CLLocationDegrees(user.location?.coordinates?.latitude ?? "0") ?? 0
-            let longitude = CLLocationDegrees(user.location?.coordinates?.longitude ?? "0") ?? 0
-
-            if latitude > swLimit.latitude && latitude < neLimit.latitude &&
-                longitude > swLimit.longitude && longitude < neLimit.longitude {
-                limitedUsers.append(user)
-            }
-
-            if limitedUsers.count == 20 {
-                break
-            }
-        }
-
-        return limitedUsers
+        interactor?.handleAnnotations(forMapView: mapView, users: users)
     }
 
 }

@@ -14,24 +14,17 @@ protocol MapRoutingLogic {
     
 }
 
-protocol MapDataPassing {
-
-    var dataStore: MapDataStore? { get }
-}
-
 protocol MapRouterDelegate: AnyObject {
 
     func navigateToFriendDetails(user: User)
     
 }
 
-class MapRouter: MapDataPassing {
+class MapRouter {
     
     weak var viewController: MapViewController?
     weak var delegate: MapRouterDelegate?
 
-    var dataStore: MapDataStore?
-    
 }
 
 // MARK: - Routing Logic

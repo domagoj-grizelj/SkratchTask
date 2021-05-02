@@ -26,10 +26,10 @@ class PageContentView: UIView {
       fatalError("init(coder:) has not been implemented")
     }
 
-//    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-//        let isContentEnabled = frame.contains(point) && friendsCountView.state != .count
-//        return switchView.frame.contains(point) || friendsCountView.frame.contains(point) || isContentEnabled
-//    }
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        let isContentEnabled = frame.contains(point) && friendsCountView.state != .count
+        return switchView.frame.contains(point) || friendsCountView.frame.contains(point) || isContentEnabled
+    }
 
 }
 
