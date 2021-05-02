@@ -33,7 +33,6 @@ struct User: Codable {
         let city: String?
         let state: String?
         let country: String?
-//        let postcode: Int? // sometimes string sometimes int
         let coordinates: UserLocationCoordinates?
         let timezone: UserTimeZone?
 

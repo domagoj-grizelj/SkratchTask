@@ -26,4 +26,12 @@ extension String {
         return attributedString
     }
 
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).capitalized + dropFirst()
+    }
+
+    private mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
+
 }

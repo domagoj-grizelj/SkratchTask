@@ -23,6 +23,16 @@ class FriendDetailsContentView: UIView {
     }
 }
 
+// MARK: - Public methods
+
+extension FriendDetailsContentView {
+
+    func set(user: User) {
+        tableHeaderView.set(user: user)
+    }
+
+}
+
 // MARK: - Private Methods
 
 private extension FriendDetailsContentView {
@@ -38,18 +48,16 @@ private extension FriendDetailsContentView {
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 60
-//        tableView.register(EventListTableViewCell.self, forCellReuseIdentifier: Constants.TableCells.kEventCell)
+        tableView.register(FriendDetailsTableViewCell.self, forCellReuseIdentifier: "FriendDetailsCell")
         tableView.snp.makeConstraints {
           $0.edges.equalToSuperview()
         }
     }
 
     func setupTableHeaderView() {
-        tableHeaderView.frame = CGRect(x: 0, y: 0, width: 0, height: 200)
         tableView.tableHeaderView = tableHeaderView
         tableView.tableHeaderView?.snp.makeConstraints({
           $0.width.equalTo(self)
-          $0.height.equalTo(200)
         })
     }
 }

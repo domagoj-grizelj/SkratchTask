@@ -64,6 +64,7 @@ private extension FriendDetailsViewController {
 
     func setupContentView() {
         contentView.tableView.dataSource = self
+        contentView.set(user: user)
     }
 
 }
@@ -73,11 +74,26 @@ private extension FriendDetailsViewController {
 extension FriendDetailsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "FriendDetailsCell", for: indexPath) as? FriendDetailsTableViewCell else {
+          return FriendDetailsTableViewCell()
+        }
+
+        if indexPath.row == 0 {
+            let title = "\(user.gender?.capitalizingFirstLetter() ?? ""), \(user.dob?.age ?? 0)"
+            let subtitle = DateTools.getFormattedStringFrom(dateString: user.dob?.date)
+            cell.set(icon: Assets.kBalloonIcon.image, title: title, subtitle: subtitle)
+
+        } else if indexPath.row == 1 {
+            let title = "\(user.location?.street?.number ?? 0) \(user.location?.street?.name ?? "")"
+            let subtitle = "\(user.location?.city ?? ""), \(user.location?.state ?? ""), \(user.location?.country ?? "")"
+            cell.set(icon: Assets.kPinIcon.image, title: title, subtitle: subtitle)
+        }
+
+        return cell
     }
 
 }

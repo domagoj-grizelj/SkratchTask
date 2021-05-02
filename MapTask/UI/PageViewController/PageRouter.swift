@@ -101,7 +101,7 @@ extension PageRouter: FriendsRouterDelegate {
         let friendDetailsViewController = FriendDetailsViewController(delegate: self, user: user)
 
         let options = SheetOptions(shrinkPresentingViewController: false)
-        let sheetViewController = SheetViewController(controller: friendDetailsViewController, sizes: [.percent(0.7)], options: options)
+        let sheetViewController = SheetViewController(controller: friendDetailsViewController, sizes: [.percent(0.7), .intrinsic], options: options)
         sheetViewController.cornerRadius = 30
         sheetViewController.minimumSpaceAbovePullBar = 8
         sheetViewController.gripSize = CGSize(width: 56, height: 5)

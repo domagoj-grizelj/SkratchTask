@@ -39,11 +39,11 @@ extension MapUserView {
 
     func set(_ user: User?) {
         let imageUrl = URL(string: user?.picture?.large ?? "")
+        nameLabel.text = user?.name?.first
+        avatarImageView.kf.setImage(with: imageUrl, options: [.transition(ImageTransition.fade(0.3)), .forceTransition])
         UIView.animate(withDuration: 0.4) {
             self.alpha = 1
         }
-        nameLabel.text = user?.name?.first
-        avatarImageView.kf.setImage(with: imageUrl, options: [.transition(ImageTransition.fade(0.3)), .forceTransition])
     }
 
 }
