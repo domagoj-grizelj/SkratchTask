@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import FittedSheets
 
 protocol PageRoutingLogic {
 
@@ -73,6 +74,15 @@ extension PageRouter: PageRoutingLogic {
     func switchToFriendsViewController() {
         guard let friendsNavigationViewController = friendsNavigationViewController else { return }
         viewController?.setViewControllers([friendsNavigationViewController], direction: .forward, animated: true, completion: nil)
+//        guard let friends = friendsNavigationViewController else { return }
+//        let options = SheetOptions(shrinkPresentingViewController: false)
+//        let sheetViewController = SheetViewController(controller: friends, sizes: [.percent(0.7)], options: options)
+//        sheetViewController.cornerRadius = 30
+//        sheetViewController.minimumSpaceAbovePullBar = 8
+//        sheetViewController.gripSize = CGSize(width: 56, height: 5)
+//        sheetViewController.gripColor = .paleBlue
+//
+//        viewController?.present(sheetViewController, animated: true, completion: nil)
     }
 
 }

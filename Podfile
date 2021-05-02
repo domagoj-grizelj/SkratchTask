@@ -9,6 +9,7 @@ def shared_pods
     pod 'Moya', '~> 14.0.0'
     pod 'Mapbox-iOS-SDK', '~> 6.3.0'
     pod 'Kingfisher', '~> 6.3.0'
+    pod 'FittedSheets', '~> 2.4.0'
 end
 
 target 'MapTask' do

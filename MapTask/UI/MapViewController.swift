@@ -91,21 +91,12 @@ extension MapViewController: MGLMapViewDelegate {
             return nil
         }
 
-        // Use the point annotation’s longitude value (as a string) as the reuse identifier for its view.
-        let reuseIdentifier = "\(annotation.coordinate.longitude)"
-
-        // For better performance, always try to reuse existing annotations.
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseIdentifier) as? MapUserView
-
         guard let user = users?.first(where: {$0.location?.coordinates?.longitude == String(annotation.coordinate.longitude) }) else {
             return MGLAnnotationView()
         }
 
-        // If there’s no reusable annotation view available, initialize a new one.
-        if annotationView == nil {
-            annotationView = MapUserView(frame: CGRect.zero)
-            annotationView?.set(user)
-        }
+        let annotationView = MapUserView(frame: CGRect.zero)
+        annotationView.set(user)
 
         return annotationView
     }
