@@ -209,14 +209,14 @@
 			children = (
 				28772544263B025B00761C74 /* Common */,
 				28772591263EE45100761C74 /* FriendDetails */,
-				2877252F2639D2D600761C74 /* PageViewController */,
+				2877252F2639D2D600761C74 /* PageContainer */,
 				2877253D263AF2E700761C74 /* Friends */,
 				2877253C263AF2DD00761C74 /* Map */,
 			);
 			path = UI;
 			sourceTree = "<group>";
 		};
-		2877252F2639D2D600761C74 /* PageViewController */ = {
+		2877252F2639D2D600761C74 /* PageContainer */ = {
 			isa = PBXGroup;
 			children = (
 				2877258A263DE1F200761C74 /* Workers */,
@@ -227,7 +227,7 @@
 				2877257C263C788200761C74 /* PageRouter.swift */,
 				2877257D263C788200761C74 /* PageInteractor.swift */,
 			);
-			path = PageViewController;
+			path = PageContainer;
 			sourceTree = "<group>";
 		};
 		287725302639D2E200761C74 /* Views */ = {
